@@ -25,7 +25,7 @@ export default function Hero({
     <Carousel
       plugins={[
         Autoplay({
-          delay: 2600,
+          delay: 3600,
           stopOnFocusIn: false,
           stopOnMouseEnter: false,
           stopOnInteraction: false,
@@ -41,21 +41,21 @@ export default function Hero({
           <HeroBanner
             title="Invest Your Digital Currency Now!"
             desc="Experience the Potential of Crypto Investments and Take Control of Your Investments with Crypto Invest USA!"
-            heroImage="https://images.unsplash.com/photo-1576520804567-b88e5dade12d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            heroImage="/banner/banner1.png"
           />
         </CarouselItem>
         <CarouselItem>
           <HeroBanner
-            title="Start Investing Your Digitally Now!"
+            title="Join Us and Invest Digitally Now!"
             desc="Unlock the Future of Finance with Crypto Investments and Discover the Power of Digital Assets with Crypto Invest USA"
-            heroImage="https://images.unsplash.com/photo-1622630998477-20aa696ecb05?q=80&w=1892&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            heroImage="/banner/banner2.png"
           />
         </CarouselItem>
         <CarouselItem>
           <HeroBanner
-            title="Start Investing Now!"
+            title="Start Investing Your Digital Currency Now!"
             desc="Empower Your Wealth: Dive into Crypto Investments Today and Explore the World of Digital Assets with Crypto Invest USA "
-            heroImage="https://images.unsplash.com/photo-1621501011941-c8ee93618c9a?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            heroImage="/banner/banner3.jpg"
           />
         </CarouselItem>
       </CarouselContent>
@@ -79,37 +79,37 @@ function HeroBanner({
   heroImage: string;
 }) {
   return (
-    <div
-      className={`w-full grid relative overflow-hidden min-h-[400px] bg-background`}
-    >
-      <Image
-        alt="community image"
-        fill
-        loader={() => heroImage}
-        src={heroImage}
-        className="object-cover opacity-10 pointer-events-none"
-      />
-      <div className="relative bg-gradient-to-t from-background from-0% to-transparent to-50%">
-        <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between text-white">
-          <section className="grid gap-5">
-            <h1
-              className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem] text-balance`}
-            >
-              {title}
-            </h1>
+    <Link href={"/signup"}>
+      <div
+        className={`w-full grid relative overflow-hidden min-h-[400px] bg-background`}
+      >
+        <Image
+          alt="community image"
+          fill
+          loader={() => heroImage}
+          src={heroImage}
+          className="object-cover pointer-events-none"
+        />
+        <div className="relative">
+          <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between">
+            <section className="grid gap-5">
+              <h1
+                className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem] text-balance`}
+              >
+                {title}
+              </h1>
 
-            <p className="max-w-[35rem] text-lg max-md:text-[1.05rem] max-md:leading-6">
-              {desc}
-            </p>
+              <p className="max-w-[35rem] text-lg max-md:text-[1.05rem] max-md:leading-6 text-white font-semibold">
+                {desc}
+              </p>
 
-            <Link href={"/signup"}>
               <Button className="w-fit px-6 bg-primary sm:text-lg rounded-full bg-gradient-to-b from-primary to-orange-500 font-bold">
                 Invest Now
               </Button>
-            </Link>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -20,7 +20,7 @@ import { useAtom } from "jotai";
 import { user } from "@/lib/jotai";
 
 export default function Header() {
-  const [userData] = useAtom(user);
+  const [userData, setUserData] = useAtom(user);
   const path = usePathname();
   const [sideState, setSideState] = useState(false);
   useEffect(() => {
@@ -147,7 +147,16 @@ export default function Header() {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={() =>
+                    setUserData({
+                      data: null,
+                      lgogedIn: false,
+                    })
+                  }
+                >
+                  Logout
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}

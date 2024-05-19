@@ -121,7 +121,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
   ];
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
-      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
+      <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r border-violate bg-violate sm:flex">
         <nav className="flex flex-col items-center gap-4 px-2 sm:py-4">
           {/* <Link
             href="#"
@@ -139,9 +139,9 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                 <TooltipTrigger asChild>
                   <Link
                     href={link}
-                    className={`flex h-9 w-9 items-center justify-center rounded-lg ${
-                      select && "bg-accent"
-                    } text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8`}
+                    className={`flex h-9 w-9 items-center justify-center  rounded-lg ${
+                      select ? "bg-accent text-card-foreground" : "text-white"
+                    } text-accent-foreground transition-colors hover:text-primary md:h-8 md:w-8`}
                   >
                     {icon}
                     <span className="sr-only">{name}</span>

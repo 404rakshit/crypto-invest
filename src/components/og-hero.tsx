@@ -26,9 +26,9 @@ export default function Hero({
         fill
         loader={() => heroImage}
         src={heroImage}
-        className="object-cover opacity-10 pointer-events-none"
+        className="object-cover pointer-events-none"
       />
-      <div className="relative bg-gradient-to-t from-background from-0% to-transparent to-50%">
+      <div className="relative">
         <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between text-white">
           <section className="grid gap-5">
             <h1
@@ -37,7 +37,7 @@ export default function Hero({
               {title}
             </h1>
 
-            <p className="max-w-[35rem] text-lg max-md:text-[1.05rem] max-md:leading-6">
+            <p className="max-w-[35rem] text-lg max-md:text-[1.05rem] max-md:leading-6 text-white font-semibold">
               {desc}
             </p>
 

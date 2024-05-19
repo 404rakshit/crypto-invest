@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 
 export default function Footer() {
   return (
-    <footer className="bg-footer w-full border-t border-border">
+    <footer className="bg-blue text-white w-full">
       <div
         className={`flex max-lg:flex-col items-start p-[4rem_min(6.25rem,_7%)] max-w-[90rem] mx-auto gap-4`}
       >
@@ -16,9 +16,23 @@ export default function Footer() {
             {/* <span className="text-xl">Crypto Invest USA</span> */}
           </Link>
 
-          <span className="max-w-lg">
-            Modifing the way individuals learn professional crypto investment!
-          </span>
+          <section className="flex flex-col gap-2">
+            <span className="max-w-lg">
+              Email:{" "}
+              <Link
+                className="hover:text-primary"
+                href={"mailto:invest@cryptoinvestusa.com"}
+              >
+                invest@cryptoinvestusa.com
+              </Link>
+            </span>
+            <span className="max-w-lg">
+              Phone:{" "}
+              <Link className="hover:text-primary" href={"tel:8886733106"}>
+                +1 (888) 673-3106{" "}
+              </Link>
+            </span>
+          </section>
 
           <section className="flex gap-4">
             <Link href={"#"}>
@@ -101,7 +115,15 @@ export default function Footer() {
           </div>
 
           <div className="flex text-sm gap-4 flex-col max-w-64">
-            <span className="text-muted-foreground uppercase">About Us</span>
+            <span className="text-muted-foreground uppercase">
+              Important Link
+            </span>
+            <Link
+              className="lg:hover:text-primary transition-all"
+              href={"/disclaimer"}
+            >
+              Disclaimer
+            </Link>
             <Link
               className="lg:hover:text-primary transition-all"
               href={"/privacy-policy"}
@@ -124,13 +146,13 @@ export default function Footer() {
         </section>
       </div>
 
-      <div className="flex text-sm font-semibold items-center justify-center border-t border-secondary bg-card p-4 px-6 max-w-[90rem] mx-auto">
+      {/* <div className="flex text-sm font-semibold items-center justify-center border-t border-secondary bg-card p-4 px-6 max-w-[90rem] mx-auto">
         <div className="flex gap-1">
           <span>© 2024</span>
           <span>CryptoInvestUSA</span>
         </div>
 
-        {/* <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap">
           <span>Contact:</span>
           <span className="text-muted-foreground flex-wrap flex gap-0.5">
             <Link
@@ -144,8 +166,8 @@ export default function Footer() {
               +18886733106
             </Link>
           </span>
-        </div> */}
-      </div>
+        </div>
+      </div> */}
     </footer>
   );
 }

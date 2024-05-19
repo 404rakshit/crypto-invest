@@ -43,7 +43,7 @@ export default function Services() {
         <div className="mx-auto grid w-full max-w-6xl items-start gap-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
             {cards.map(({ title, description, image }, i) => (
-              <Card key={i} className="shadow-md shadow-black">
+              <Card key={i} className="shadow-md">
                 <CardHeader className="gap-2 text-center items-center">
                   <div className="p-2 bg-gradient-to-tr from-primary to-orange-500 backdrop-blur-sm rounded-full">
                     <div className="p-0.5 w-fit rounded-full bg-muted flex-1">

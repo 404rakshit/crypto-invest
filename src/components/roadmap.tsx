@@ -2,7 +2,6 @@
 
 import {
   Card,
-  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -108,7 +107,7 @@ export default function Roadmap() {
                           >
                             {index + 1}
                           </div>
-                          <CardTitle className="line-clamp-2 text-xl leading-5">
+                          <CardTitle className="line-clamp-2 text-xl leading-5 text-white">
                             {title}
                           </CardTitle>
                         </div>
