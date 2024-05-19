@@ -26,7 +26,7 @@ export default function Hero({
         fill
         loader={() => heroImage}
         src={heroImage}
-        className="object-cover pointer-events-none"
+        className="object-cover object-left-top pointer-events-none"
       />
       <div className="relative">
         <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between text-white">

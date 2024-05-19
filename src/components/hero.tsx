@@ -39,7 +39,7 @@ export default function Hero({
       <CarouselContent>
         <CarouselItem>
           <HeroBanner
-            title="Invest Your Digital Currency Now!"
+            title="Invest Your Digital Currency!"
             desc="Experience the Potential of Crypto Investments and Take Control of Your Investments with Crypto Invest USA!"
             heroImage="/banner/banner1.png"
           />
@@ -53,7 +53,7 @@ export default function Hero({
         </CarouselItem>
         <CarouselItem>
           <HeroBanner
-            title="Start Investing Your Digital Currency Now!"
+            title="Start Investing Crypto Now!"
             desc="Empower Your Wealth: Dive into Crypto Investments Today and Explore the World of Digital Assets with Crypto Invest USA "
             heroImage="/banner/banner3.jpg"
           />
@@ -94,7 +94,7 @@ function HeroBanner({
           <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between">
             <section className="grid gap-5">
               <h1
-                className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem] text-balance`}
+                className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem]`}
               >
                 {title}
               </h1>
