@@ -19,8 +19,8 @@ export const Banner = () => {
           READY TO STAY AHEAD OF YOUR COMPETITION?
         </span>
         <h3 className="text-5xl max-sm:text-4xl font-bold max-w-4xl text-white">
-          Join millions of people around the world inversting cryptocurrency
-          with us.
+          Join millions of people around the world investing cryptocurrency with
+          us.
         </h3>
         <Link href={"/buy-crypto"}>
           <Button className="text-lg w-fit px-12 font-bold rounded-full mt-4 drop-shadow-md bg-gradient-to-b from-primary to-orange-500">

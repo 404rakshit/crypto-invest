@@ -112,6 +112,15 @@ export default function Header() {
             </Link>
           ))}
         </nav>
+        <Link href={"/"} className="md:hidden shrink-0">
+          <Image
+            src={"/logo.png"}
+            alt=""
+            width={150}
+            height={150}
+            className="shrink-0"
+          />
+        </Link>
         <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
           {/* <form className="ml-auto flex-1 sm:flex-initial">
             <div className="relative">

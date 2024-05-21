@@ -10,7 +10,9 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 export default function Hero({
   title,
@@ -21,8 +23,25 @@ export default function Hero({
   desc: string;
   heroImage: string;
 }) {
+  const [api, setApi] = useState<CarouselApi>();
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCurrent(api.selectedScrollSnap() + 1);
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    });
+  }, [api]);
+
   return (
     <Carousel
+      setApi={setApi}
       plugins={[
         Autoplay({
           delay: 3600,
@@ -42,6 +61,8 @@ export default function Hero({
             title="Invest Your Digital Currency!"
             desc="Experience the Potential of Crypto Investments and Take Control of Your Investments with Crypto Invest USA!"
             heroImage="/banner/banner1.png"
+            pos={1}
+            current={current}
           />
         </CarouselItem>
         <CarouselItem>
@@ -49,6 +70,8 @@ export default function Hero({
             title="Join Us and Invest Digitally Now!"
             desc="Unlock the Future of Finance with Crypto Investments and Discover the Power of Digital Assets with Crypto Invest USA"
             heroImage="/banner/banner2.png"
+            pos={2}
+            current={current}
           />
         </CarouselItem>
         <CarouselItem>
@@ -56,14 +79,16 @@ export default function Hero({
             title="Start Investing Crypto Now!"
             desc="Empower Your Wealth: Dive into Crypto Investments Today and Explore the World of Digital Assets with Crypto Invest USA "
             heroImage="/banner/banner3.jpg"
+            pos={3}
+            current={current}
           />
         </CarouselItem>
       </CarouselContent>
       <span className="absolute left-3 top-1/2">
-        <CarouselPrevious />
+        <CarouselPrevious className="bg-background/60 border-none" />
       </span>
       <span className="absolute right-3 top-1/2">
-        <CarouselNext />
+        <CarouselNext className="bg-background/60 border-none" />
       </span>
     </Carousel>
   );
@@ -73,28 +98,36 @@ function HeroBanner({
   title,
   desc,
   heroImage,
+  current,
+  pos,
 }: {
   title: string;
   desc: string;
   heroImage: string;
+  current: number;
+  pos: number;
 }) {
   return (
     <Link href={"/signup"}>
       <div
-        className={`w-full grid relative overflow-hidden min-h-[400px] bg-background`}
+        className={`w-full grid relative overflow-hidden min-h-[400px] bg-black`}
       >
         <Image
           alt="community image"
           fill
           loader={() => heroImage}
           src={heroImage}
-          className="object-cover pointer-events-none"
+          className="object-cover opacity-70 pointer-events-none"
         />
         <div className="relative">
-          <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between">
-            <section className="grid gap-5">
+          <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[8rem_4rem_2.75rem] m-auto max-w-7xl flex justify-between">
+            <section
+              className={`grid gap-2 md:gap-5 place-items-center text-center mx-auto opacity-0 transition-all delay-500 duration-300 ${
+                current === pos && "-translate-y-10 opacity-100"
+              }`}
+            >
               <h1
-                className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem]`}
+                className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[2.5rem] font-extrabold text-primary leading-[3rem] line-clamp-3`}
               >
                 {title}
               </h1>

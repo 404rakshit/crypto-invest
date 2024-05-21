@@ -98,7 +98,7 @@ export default function Footer() {
                 <Input
                   type="email"
                   placeholder="emailaddress@gmail.com"
-                  className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px] placeholder:text-muted-foreground/50"
+                  className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px] placeholder:text-muted-foreground/50 text-black"
                 />
               </div>
               <Button variant={"secondary"} className="w-fit">
