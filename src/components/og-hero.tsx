@@ -32,7 +32,7 @@ export default function Hero({
         <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[12rem_1rem_2.75rem] m-auto max-w-7xl flex justify-between text-white">
           <section className="grid gap-5">
             <h1
-              className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[3rem] font-extrabold text-primary leading-[3rem] text-balance`}
+              className={`max-w-xl max-sm:max-w-sm font-jakarta sm:text-[3.5rem] text-[2.5rem] font-extrabold text-primary leading-[3rem] text-balance`}
             >
               {title}
             </h1>
