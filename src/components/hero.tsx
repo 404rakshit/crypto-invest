@@ -122,7 +122,7 @@ function HeroBanner({
         <div className="relative">
           <div className="sm:p-[12.5rem_2.5rem_6.75rem] max-sm:p-[8rem_4rem_2.75rem] m-auto max-w-7xl flex justify-between">
             <section
-              className={`grid gap-2 md:gap-5 place-items-center text-center mx-auto opacity-0 transition-all delay-500 duration-300 ${
+              className={`grid gap-2 md:gap-5 place-items-center text-center mx-auto opacity-0 transition-all delay-500 duration-700 ${
                 current === pos && "-translate-y-10 opacity-100"
               }`}
             >
