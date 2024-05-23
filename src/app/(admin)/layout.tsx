@@ -91,8 +91,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
     {
       icon: <Euro className="h-5 w-5" />,
       name: "Fund Account",
-      link: "/account",
-      select: path === "/account",
+      link: "/fund-account",
+      select: path === "/fund-account",
     },
     {
       icon: <HandHelping className="h-5 w-5" />,
