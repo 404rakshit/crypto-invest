@@ -97,8 +97,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
     {
       icon: <HandHelping className="h-5 w-5" />,
       name: "Withdraw Funds",
-      link: "/funds",
-      select: path === "/funds",
+      link: "/withdraw-funds",
+      select: path === "/withdraw-funds",
     },
     {
       icon: <LineChart className="h-5 w-5" />,
@@ -211,7 +211,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
                   <Link href={path} className="capitalize">
-                    {path.split("/")[1]}
+                    {path.split("/")[1].split("-").join(" ")}
                   </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>

@@ -7,7 +7,7 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
-import PaymentTabs from "./payment-tabs";
+import PaymentTabs from "./withdrawal";
 
 
 export default function FundAccount() {
@@ -16,12 +16,12 @@ export default function FundAccount() {
             <div className="flex items-start lg:items-center justify-center py-10 px-5 max-w-3xl mx-auto w-full max-lg:min-h-screen">
                 <div className="grid gap-6">
                     <div className="grid gap-2">
-                        <h1 className="text-3xl font-bold">Fund Your Account</h1>
+                        <h1 className="text-3xl font-bold">Withdraw Funds</h1>
                         <Alert>
                             <CircleAlert className="h-4 w-4" />
                             <AlertTitle>Notice</AlertTitle>
                             <AlertDescription>
-                                Please Note that Minimum Fund Amount is $500. Contact <span className="font-bold">contact@cryptoinvestusa.com</span> for more details. Ensure to provide your Funding Code when contacting support. If you encounter any issue while funding your account, please contact <span className="font-bold">contact@cryptoinvestusa.com</span> for assistance. Your account once your payment is confirmed.
+                                Withdrawals ore based on your Account types, your Account Type will determine the amount you con withdraw. Contact <span className="font-bold">contact@cryptoinvestusa.com</span> for o more detailed description. Ensure to provide your Withdrawal Code when contacting support. II you encounter any issue while withdrawing from your account, please contact <span className="font-bold">contact@cryptoinvestusa.com</span> for ossiastance. Your account will be credited once your payment is confirmed.
                             </AlertDescription>
                         </Alert>
                     </div>
