@@ -100,7 +100,19 @@ export default function DocForm() {
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="file"> File</Label>
+          <Label htmlFor="file">Front View</Label>
+        </div>
+        <Input
+          name="file"
+          id="file"
+          type="file"
+          className="file:text-white file:bg-primary/70 file:rounded-sm file: file:mr-2"
+          required
+        />
+      </div>
+      <div className="grid gap-2">
+        <div className="flex items-center">
+          <Label htmlFor="file">Back View</Label>
         </div>
         <Input
           name="file"
