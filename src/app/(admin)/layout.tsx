@@ -139,9 +139,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                 <TooltipTrigger asChild>
                   <Link
                     href={link}
-                    className={`flex h-9 w-9 items-center justify-center  rounded-lg ${
-                      select ? "bg-accent text-card-foreground" : "text-white"
-                    } text-accent-foreground transition-colors hover:text-primary md:h-8 md:w-8`}
+                    className={`flex h-9 w-9 items-center justify-center  rounded-lg ${select ? "bg-accent text-card-foreground" : "text-white"
+                      } text-accent-foreground transition-colors hover:text-primary md:h-8 md:w-8`}
                   >
                     {icon}
                     <span className="sr-only">{name}</span>
@@ -195,9 +194,8 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
                   <Link
                     key={i}
                     href={link}
-                    className={`flex items-center gap-4 px-2.5 ${
-                      select ? "text-foreground" : "text-muted-foreground"
-                    }`}
+                    className={`flex items-center gap-4 px-2.5 ${select ? "text-foreground" : "text-muted-foreground"
+                      }`}
                   >
                     {icon}
                     {name}
@@ -261,7 +259,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
               <DropdownMenuItem
                 onClick={() =>
                   setUserData({
-                    data: null,
+                    data: { username: null, fname: null, lname: null, phone: null, email: null, },
                     lgogedIn: false,
                   })
                 }
