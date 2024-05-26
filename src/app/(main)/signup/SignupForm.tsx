@@ -19,6 +19,28 @@ export default function SignupForm() {
     if (userData.lgogedIn) router.push("/dashboard");
   }, [userData]);
 
+  const sendEmail = async ({ name, email }: { name: string, email: string }) => {
+    const data = {
+      name,
+      email,
+      message: 'Thank you for joining and investing in us, We value your time and money equally.'
+    };
+
+    const response = await fetch('/api/sendMail', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      console.log('Email sent successfully!');
+    } else {
+      console.error('Failed to send email:', await response.text());
+    }
+  };
+
   function OnSuccess(newData: any) {
     setUserData({ data: newData.post, lgogedIn: newData.user });
     router.push("/dashboard");
@@ -79,7 +101,11 @@ export default function SignupForm() {
 
     setPending(false);
 
-    if (resData.user) return OnSuccess(resData);
+    if (resData.user) {
+      OnSuccess(resData)
+      await sendEmail({name: (resData?.post?.fname + resData?.post?.lname) || "", email: resData?.post?.email || "" })
+      return true
+    };
     return OnError(String(resData));
   };
 

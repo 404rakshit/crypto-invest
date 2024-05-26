@@ -2,6 +2,7 @@ import { Banner } from "@/components/banner";
 import CryptoTable from "@/components/crypto-table";
 import Hero from "@/components/hero";
 import InvestTray from "@/components/invest-tray";
+import Popup from "@/components/popup";
 import Roadmap from "@/components/roadmap";
 import Services from "@/components/services";
 import { Metadata } from "next";
@@ -34,6 +35,7 @@ export default function Home() {
         <CryptoTable />
         <Banner />
       </main>
+      <Popup />
     </div>
   );
 }

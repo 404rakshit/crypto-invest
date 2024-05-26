@@ -21,9 +21,11 @@ import {
 } from "@/components/ui/select"
 
 import { Textarea } from "@/components/ui/textarea"
+import { user } from "@/lib/jotai"
+import { useAtom } from "jotai"
 
 export default function Withdrawal() {
-
+    const [data] = useAtom(user)
     return (
         <Card>
             <CardHeader>
@@ -35,7 +37,7 @@ export default function Withdrawal() {
             <CardContent className="space-y-2">
                 <div className="space-y-1">
                     <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                    <Input id="username" placeholder="peduatre" />
+                    <Input id="username" placeholder="peduatre" disabled defaultValue={data?.data?.username || ""} />
                 </div>
                 <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                     <div className="space-y-1">

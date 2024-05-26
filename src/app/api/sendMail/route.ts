@@ -1,18 +1,31 @@
-import { transporter } from "@/lib/mail";
-import { NextResponse } from "next/server";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
-    try {
-        const res = await transporter.sendMail({
-            subject: "How are you bro",
-            from: process.env.MAIL,
-            to: "tony.sir1975@gmail.com",
-            text: "This is your OTP.",
-        })
+  const { name, email, message } = await req.json();
 
-        return NextResponse.json(res, { status: 201 });
-    } catch (err: any) {
-        console.log(err);
-        return NextResponse.json(err.message || err || "Database Error", { status: err.status || 500 });
-    }
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS,
+      },
+    });
+
+    const mailOptions = {
+      from: 'CryptoInvestUSA <invest.cryptoinvestusa@gmail.com>',
+      to: email,
+      subject: 'Thank you fir joining us, Welcome from our team CryptoInvestUSA',
+      text: `Hi ${name},\n${message}`,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    return NextResponse.json({ message: 'Email sent successfully!' }, { status: 201 });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return NextResponse.json({ message: 'Error sending email.' }, { status: 500 });
+  }
 }

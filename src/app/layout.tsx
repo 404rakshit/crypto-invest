@@ -23,7 +23,7 @@ export default async function RootLayout({
         <ReactQuery>
           {children}
           <Footer />
-          <Toaster />
+          <Toaster richColors />
         </ReactQuery>
       </body>
     </html>
