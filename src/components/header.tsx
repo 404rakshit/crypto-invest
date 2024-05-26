@@ -159,7 +159,7 @@ export default function Header() {
                 <DropdownMenuItem
                   onClick={() =>
                     setUserData({
-                      data: null,
+                      data: { username: null, fname: null, lname: null, phone: null, email: null, },
                       lgogedIn: false,
                     })
                   }
