@@ -1,7 +1,6 @@
 'use server'
 
 import { UTApi } from "uploadthing/server";
-import { getSession } from "./useSession";
 
 const utapi = new UTApi({
     apiKey: process.env.UPLOADTHING_SECRET,
@@ -9,9 +8,7 @@ const utapi = new UTApi({
 
 export async function uploadFiles(formData: FormData) {
 
-    const session = await getSession()
     // @ts-ignore
-    
     const frontFile: File = formData.get("front-file")
     // @ts-ignore
     const backFile: File = formData.get("back-file")
@@ -21,4 +18,9 @@ export async function uploadFiles(formData: FormData) {
     ]);
 
     return response
+}
+
+export async function deleteFiles(data: string[]) {
+    const res = await utapi.deleteFiles(data);
+    return res.success
 }

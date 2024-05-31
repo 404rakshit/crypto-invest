@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { User } from "@prisma/client";
 import { UploadFileResult } from "uploadthing/types";
 import prisma from "./prismaClient";
+import { deleteFiles } from "./utfiles";
 
 export const getSession = async () => {
   const session = await getIronSession<SessionData>(cookies(), sessionOption);
@@ -38,23 +39,24 @@ export const logout = async () => {
   redirect("/login")
 };
 
-export const changeUploads = async (state: boolean, data: UploadFileResult[], docs: string) => {
+export const changeUploads = async (state: boolean, data?: UploadFileResult[], docs?: string) => {
   const session = await getSession()
 
   if (state) {
+    if (!data) return
     await prisma.user.update({
       where: {
         username: session.username
       },
       data: {
         docType: docs,
-        front: data[0].data?.customId,
-        back: data[1].data?.customId
+        front: data[0].data?.key,
+        back: data[1].data?.key
       }
     })
-    
+
     session.fileUploaded = true
-    
+
   } else {
     await prisma.user.update({
       where: {

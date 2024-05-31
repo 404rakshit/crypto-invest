@@ -1,7 +1,12 @@
 import Link from "next/link";
 import DocForm from "./documentForm";
+import { getSession } from "@/util/useSession";
+import PostDocForm from "./uploadedFiles";
 
-export default function Dashboard() {
+export default async function Dashboard() {
+
+  const session =  await getSession()
+
   return (
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 bg-muted/40 min-h-screen">
       <div className="flex items-start lg:items-center justify-center sm:py-10 px-5 max-w-3xl mx-auto w-full max-lg:min-h-screen">
@@ -13,7 +18,7 @@ export default function Dashboard() {
               ensure the safety and security of your funds
             </p>
           </div>
-          <DocForm />
+          {session.fileUploaded ? <PostDocForm/> : <DocForm />}
         </div>
       </div>
     </main>

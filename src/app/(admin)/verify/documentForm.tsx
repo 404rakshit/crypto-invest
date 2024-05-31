@@ -51,7 +51,7 @@ export default function DocForm() {
     const { front, back, docs } = {
       front: data.get("front-file"),
       back: data.get("back-file"),
-      docs: data.get("doc-type"),
+      docs: data.get("doc-type")?.toString(),
     };
 
     if (!front) return alrt("Front File");
