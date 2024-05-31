@@ -7,6 +7,8 @@ import { Label } from "@/components/ui/label";
 
 import type { Metadata } from "next";
 import LoginForm from "./loginForm";
+import { getSession } from "@/util/useSession";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crypto-invest-eight.vercel.app/"),
@@ -21,7 +23,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Login() {
+export default async function Login() {
+
+  const session = await getSession()
+
+  if (session.isLoggedin) redirect("/verify")
+
   return (
     <div className="w-full lg:grid lg:grid-cols-2 place-items-start overflow-hidden">
       <div className="flex items-start lg:items-center justify-center py-20 px-5 max-w-3xl lg:ml-auto max-lg:mx-auto w-full max-lg:min-h-screen">

@@ -16,11 +16,8 @@ import { Input } from "./ui/input";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { user } from "@/lib/jotai";
 
 export default function Header() {
-  const [userData, setUserData] = useAtom(user);
   const path = usePathname();
   const [sideState, setSideState] = useState(false);
   useEffect(() => {
@@ -122,17 +119,7 @@ export default function Header() {
           />
         </Link>
         <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
-          {/* <form className="ml-auto flex-1 sm:flex-initial">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
-              />
-            </div>
-          </form> */}
-          {!userData.lgogedIn ? (
+          {true ? (
             <Link href={"/login"}>
               <Button className="font-semibold px-3 py-1 gap-0.5">
                 Login <LogIn className="h-4 w-4" />
@@ -156,14 +143,7 @@ export default function Header() {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() =>
-                    setUserData({
-                      data: { username: null, fname: null, lname: null, phone: null, email: null, },
-                      lgogedIn: false,
-                    })
-                  }
-                >
+                <DropdownMenuItem>
                   Logout
                 </DropdownMenuItem>
               </DropdownMenuContent>

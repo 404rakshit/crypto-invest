@@ -1,6 +1,9 @@
 import type { Config } from "tailwindcss"
 
-const config = {
+import { withUt } from "uploadthing/tw";
+ 
+
+const config = withUt({
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -53,7 +56,8 @@ const config = {
           foreground: "hsl(var(--card-foreground))",
         },
         blue: "#00064D",
-        violate: "#3C0E59"
+        violate: "#3C0E59",
+        purple: "#341448"
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -77,6 +81,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+}) satisfies Config
 
 export default config

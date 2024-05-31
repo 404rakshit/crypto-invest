@@ -6,24 +6,18 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 
 import { FormEvent, useEffect, useState } from "react";
-import { user } from "@/lib/jotai";
+// import { user } from "@/lib/jotai";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { login } from "@/util/useSession";
+import { User } from "@prisma/client";
 
 export default function LoginForm() {
-  const [userData, setUserData] = useAtom(user);
   const [isPending, setPending] = useState(false);
 
-  const router = useRouter();
-
-  useEffect(() => {
-    if (userData.lgogedIn) router.push("/dashboard");
-  }, [userData]);
-
-  function OnSuccess(newData: any) {
-    setUserData({ data: newData.post, lgogedIn: newData.user });
-    router.push("/dashboard");
+  function OnSuccess(newData: {post: User}) {
+    login(newData.post);
   }
 
   function OnError(errData: any) {

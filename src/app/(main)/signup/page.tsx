@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import SignupForm from "./SignupForm";
 import { Metadata } from "next";
+import { getSession } from "@/util/useSession";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crypto-invest-eight.vercel.app/"),
@@ -16,7 +18,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SignUp() {
+export default async function SignUp() {
+
+  const session = await getSession()
+
+  if (session.isLoggedin) redirect("/verify")
+    
   return (
     <div className="w-full lg:grid lg:grid-cols-2 place-items-start overflow-hidden">
       <div className="hidden bg-muted lg:block w-full">

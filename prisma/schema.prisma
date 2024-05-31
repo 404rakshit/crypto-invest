@@ -21,6 +21,9 @@ model User {
   username  String   @unique
   phone     String
   password  String
+  docType   String?
+  front     String?
+  back      String?
   createdAt DateTime @default(now())
 }
 

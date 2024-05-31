@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -21,11 +19,12 @@ import {
 } from "@/components/ui/select"
 
 import { Textarea } from "@/components/ui/textarea"
-import { user } from "@/lib/jotai"
-import { useAtom } from "jotai"
+import { getSession } from "@/util/useSession"
 
-export default function Withdrawal() {
-    const [data] = useAtom(user)
+export default async function Withdrawal() {
+    
+    const session = await getSession()
+
     return (
         <Card>
             <CardHeader>
@@ -37,7 +36,7 @@ export default function Withdrawal() {
             <CardContent className="space-y-2">
                 <div className="space-y-1">
                     <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                    <Input id="username" placeholder="peduatre" disabled defaultValue={data?.data?.username || ""} />
+                    <Input id="username" placeholder="peduatre" disabled defaultValue={session.username} />
                 </div>
                 <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                     <div className="space-y-1">

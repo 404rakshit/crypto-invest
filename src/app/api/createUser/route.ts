@@ -1,3 +1,4 @@
+import { encrypt } from "@/lib/crypt";
 import prisma from "@/util/prismaClient";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
@@ -25,7 +26,7 @@ export async function POST(req: Request) {
                 lname,
                 phone,
                 username,
-                password
+                password: await encrypt(password)
             }
         });
 

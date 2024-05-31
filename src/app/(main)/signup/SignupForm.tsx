@@ -5,19 +5,12 @@ import { Label } from "@/components/ui/label";
 import React, { useEffect } from "react";
 
 import { FormEvent, useState } from "react";
-import { user } from "@/lib/jotai";
-import { useAtom } from "jotai";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { login } from "@/util/useSession";
 
 export default function SignupForm() {
-  const [userData, setUserData] = useAtom(user);
   const [isPending, setPending] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (userData.lgogedIn) router.push("/dashboard");
-  }, [userData]);
 
   const sendEmail = async ({ name, email }: { name: string, email: string }) => {
     const data = {
@@ -42,8 +35,7 @@ export default function SignupForm() {
   };
 
   function OnSuccess(newData: any) {
-    setUserData({ data: newData.post, lgogedIn: newData.user });
-    router.push("/dashboard");
+    login(newData.post);
   }
 
   function OnError(errData: any) {

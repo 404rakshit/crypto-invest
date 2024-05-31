@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -18,26 +16,14 @@ import {
     TabsTrigger,
 } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
-import { user } from "@/lib/jotai"
-import { useAtom } from "jotai"
+import { getSession } from "@/util/useSession"
 import { Check, Copy, QrCode } from "lucide-react"
 import { useState } from "react"
+import BTN from "./btn"
 
-export default function PaymentTabs() {
-    const [copy, setCopy] = useState(false)
-    const [data] = useAtom(user)
-
-    function BTN() {
-        return (<Button className={`${copy && "bg-lime-600 hover:bg-lime-700"}`} onClick={async () => {
-            setCopy(true)
-            navigator.clipboard.writeText("askhdjhasgdhjlquwvwhabdhabsdjsha ")
-            await new Promise((res) => setTimeout(() => {
-                setCopy(false)
-                return res
-            }, 1000))
-
-        }}>{copy ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}</Button>)
-    }
+export default async function PaymentTabs() {
+    
+    const session = await getSession()
 
     return (
         <Tabs defaultValue="bitcoin" className="w-full">
@@ -57,7 +43,7 @@ export default function PaymentTabs() {
                         <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                             <div className="space-y-1">
                                 <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                                <Input id="username" disabled defaultValue={data?.data?.username || ""} placeholder="peduatre" />
+                                <Input id="username" disabled defaultValue={session.username} placeholder="peduatre" />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="amount">Amount <span className="text-red-500">*</span></Label>
@@ -102,7 +88,7 @@ export default function PaymentTabs() {
                         <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                             <div className="space-y-1">
                                 <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                                <Input id="username" placeholder="peduatre" disabled defaultValue={data?.data?.username || ""}  />
+                                <Input id="username" placeholder="peduatre" disabled defaultValue={session.username}  />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="amount">Amount <span className="text-red-500">*</span></Label>

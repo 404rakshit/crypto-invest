@@ -13,17 +13,21 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { uploadFiles } from "@/util/utfiles";
+import { UploadFileResult } from "uploadthing/types";
+import { changeUploads } from "@/util/useSession";
+import prisma from "@/util/prismaClient";
 
 export default function DocForm() {
   const [isPending, setPending] = useState(false);
 
-  const router = useRouter();
-
-  function OnSuccess(newData: any) {
-    router.push("/dashboard");
+  async function OnSuccess(newData: any, res: UploadFileResult[], docs: string) {
+    await changeUploads(true, res, docs)
+    toast("Files Uploaded", {
+      description: String(newData),
+    });
   }
 
   function OnError(errData: any) {
@@ -44,31 +48,21 @@ export default function DocForm() {
 
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const { username, password } = {
-      username: data.get("username")?.toString(),
-      password: data.get("password")?.toString(),
+    const { front, back, docs } = {
+      front: data.get("front-file"),
+      back: data.get("back-file"),
+      docs: data.get("doc-type"),
     };
 
-    if (!username) return alrt("username");
-    if (!password) return alrt("password");
+    if (!front) return alrt("Front File");
+    if (!back) return alrt("Back File");
+    if (!docs) return alrt("Please select a file type");
 
-    const res = await fetch(`/api/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    });
-
-    const resData = await res.json();
+    const res = await uploadFiles(data)
 
     setPending(false);
-
-    if (resData.user) return OnSuccess(resData);
-    return OnError(String(resData));
+    if (!res) return OnError("Unable to upload files");
+    return OnSuccess("Wait for the KYC Verification", res, docs);
   };
 
   return (
@@ -81,7 +75,7 @@ export default function DocForm() {
           </span>
         </Label>
 
-        <Select>
+        <Select name="doc-type">
           <SelectTrigger className="">
             <SelectValue placeholder="Select Document Type" />
           </SelectTrigger>
@@ -96,25 +90,26 @@ export default function DocForm() {
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="file">Front View</Label>
+          <Label htmlFor="front-file">Front View</Label>
         </div>
         <Input
-          name="file"
-          id="file"
+          name="front-file"
+          id="front-file"
           type="file"
           className="file:text-white file:bg-primary/70 file:rounded-sm file: file:mr-2"
           required
         />
+
       </div>
       <div className="grid gap-2">
         <div className="flex items-center">
-          <Label htmlFor="file">Back View</Label>
+          <Label htmlFor="back-file">Back View</Label>
         </div>
         <Input
-          name="file"
-          id="file"
+          name="back-file"
+          id="back-file"
           type="file"
-          className="file:text-white file:bg-primary/70 file:rounded-sm file: file:mr-2"
+          className="file:text-white file:bg-primary/70 file:rounded-sm file:mr-2"
           required
         />
       </div>
