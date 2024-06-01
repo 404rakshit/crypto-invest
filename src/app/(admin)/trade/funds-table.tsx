@@ -41,39 +41,45 @@ const data: Payment[] = [
     id: "m5gr84i9",
     amount: 316,
     status: "success",
-    email: "ken99@yahoo.com",
+    asset: "BTC",
+    date: new Date("2024-05-12T18:43:17.550Z")
   },
   {
     id: "3u1reuv4",
     amount: 242,
     status: "success",
-    email: "Abe45@gmail.com",
+    asset: "BTC",
+    date: new Date("2024-05-12T18:43:17.550Z")
   },
   {
     id: "derv1ws0",
     amount: 837,
     status: "processing",
-    email: "Monserrat44@gmail.com",
+    asset: "BTC",
+    date: new Date("2024-05-12T18:43:17.550Z")
   },
   {
     id: "5kma53ae",
     amount: 874,
     status: "success",
-    email: "Silas22@gmail.com",
+    asset: "BTC",
+    date: new Date("2024-05-12T18:43:17.550Z")
   },
   {
     id: "bhqecj4p",
     amount: 721,
     status: "failed",
-    email: "carmella@hotmail.com",
+    asset: "BTC",
+    date: new Date("2024-05-12T18:43:17.550Z")
   },
 ]
 
 export type Payment = {
   id: string
   amount: number
+  asset: string,
   status: "pending" | "processing" | "success" | "failed"
-  email: string
+  date: Date
 }
 
 export const columns: ColumnDef<Payment>[] = [
@@ -85,23 +91,13 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
   {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    accessorKey: "asset",
+    header:  "Asset",
+    cell: ({ row }) => <div className="uppercase">{row.getValue("asset")}</div>,
   },
   {
     accessorKey: "amount",
-    header: () => <div className="text-right">Amount</div>,
+    header: "Amount",
     cell: ({ row }) => {
       const amount = parseFloat(row.getValue("amount"))
 
@@ -111,7 +107,17 @@ export const columns: ColumnDef<Payment>[] = [
         currency: "USD",
       }).format(amount)
 
-      return <div className="text-right font-medium">{formatted}</div>
+      return <div className="font-medium">{formatted}</div>
+    },
+  },
+  {
+    accessorKey: "date",
+    header: () => <div className="text-right">Date</div>,
+    cell: ({ row }) => {
+
+      const date = new Date(row.getValue("date"))
+
+      return <div className="text-right font-medium">{date.toJSON()}</div>
     },
   },
   {
@@ -175,7 +181,7 @@ export default function FundsTable() {
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
+      {/* <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -210,7 +216,7 @@ export default function FundsTable() {
               })}
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
+      </div> */}
       <div className="rounded-md border overflow-hidden">
         <Table>
           <TableHeader>

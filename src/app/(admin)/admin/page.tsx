@@ -34,7 +34,7 @@ export default function Dashboard() {
                 <TableHead>Users</TableHead>
                 <TableHead className="hidden sm:table-cell">Phone</TableHead>
                 <TableHead className="hidden sm:table-cell">Username</TableHead>
-                <TableHead className="text-right">Date</TableHead>
+                <TableHead className="text-right">File</TableHead>
               </TableRow>
             </TableHeader>
             <Suspense fallback={DummyTable()}>

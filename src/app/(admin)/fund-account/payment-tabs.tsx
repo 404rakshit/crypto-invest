@@ -53,7 +53,7 @@ export default async function PaymentTabs() {
                         <div className="space-y-1">
                             <Label htmlFor="pay">Send Payment To:<span className="text-red-500">*</span></Label>
                             <span className="flex gap-1">
-                                <Input value={"askhdjhasgdhjlquwvwhabdhabsdjsha"} id="pay" />
+                                <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} id="pay" />
                                 <BTN />
                                 <Button><QrCode className="w-4 h-4" /></Button>
                             </span>
@@ -98,7 +98,7 @@ export default async function PaymentTabs() {
                         <div className="space-y-1">
                             <Label htmlFor="pay">Send Payment To:<span className="text-red-500">*</span></Label>
                             <span className="flex gap-1">
-                                <Input value={"askhdjhasgdhjlquwvwhabdhabsdjsha"} id="pay" />
+                                <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} id="pay" />
                                 <BTN />
                                 <Button><QrCode className="w-4 h-4" /></Button>
                             </span>

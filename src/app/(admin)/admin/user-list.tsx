@@ -17,7 +17,7 @@ export default async function UserList() {
       {data.length > 0 ? (
         <>
           {data.map(
-            ({ fname, lname, email, createdAt, phone, username }, i) => (
+            ({ fname, lname, email, createdAt, phone, username, docType, back, front }, i) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="font-medium">
@@ -36,8 +36,8 @@ export default async function UserList() {
                     {username}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right">
-                  {new Date(createdAt).toDateString()}
+                <TableCell className="text-right text-white text-xs uppercase">
+                  {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span> }
                 </TableCell>
               </TableRow>
             )
