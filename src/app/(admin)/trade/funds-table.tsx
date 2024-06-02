@@ -117,7 +117,7 @@ export const columns: ColumnDef<Payment>[] = [
 
       const date = new Date(row.getValue("date"))
 
-      return <div className="text-right font-medium">{date.toJSON()}</div>
+      return <div className="text-right font-medium">{date.toLocaleDateString()}</div>
     },
   },
   {
@@ -180,7 +180,7 @@ export default function FundsTable() {
   })
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       {/* <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -217,8 +217,8 @@ export default function FundsTable() {
           </DropdownMenuContent>
         </DropdownMenu>
       </div> */}
-      <div className="rounded-md border overflow-hidden">
-        <Table>
+      <div className="rounded-md border">
+        <Table className="overflow-hidden">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>

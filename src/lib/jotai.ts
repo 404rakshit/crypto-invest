@@ -1,5 +1,7 @@
 // import { atomWithStorage } from "jotai/utils";
 
+import { atom } from "jotai";
+
 // export const user = atomWithStorage("user", {
 //     data: {
 //         username: null,
@@ -10,3 +12,15 @@
 //     },
 //     lgogedIn: false
 // })
+
+export const modalState = atom(false)
+
+export const modalData = atom({
+    fname: "",
+    lname: "",
+    email: "",
+    username: "",
+    docType: "",
+    front: "",
+    back: "",
+})

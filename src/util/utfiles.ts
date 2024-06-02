@@ -24,3 +24,9 @@ export async function deleteFiles(data: string[]) {
     const res = await utapi.deleteFiles(data);
     return res.success
 }
+
+
+export async function getFiles(data: string) {
+    const res = await utapi.getFileUrls([data]);
+    return res.data
+}

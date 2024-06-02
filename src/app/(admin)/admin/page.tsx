@@ -1,4 +1,3 @@
-import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
@@ -18,6 +17,7 @@ import {
 } from "@/components/ui/table";
 import { Suspense } from "react";
 import UserList from "./user-list";
+import { Modal } from "./modal";
 
 export default function Dashboard() {
   return (
@@ -43,6 +43,7 @@ export default function Dashboard() {
           </Table>
         </CardContent>
       </Card>
+      <Modal />
     </main>
   );
 }

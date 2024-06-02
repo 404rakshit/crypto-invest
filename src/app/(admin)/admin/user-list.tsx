@@ -3,21 +3,18 @@ import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import prisma from "@/util/prismaClient";
 import { User } from "@prisma/client";
 import React from "react";
-
-async function getUser(): Promise<User[]> {
-  const data = await prisma.user.findMany();
-  return data;
-}
+import ClientTableRow from "./table-row";
+import ClientButton from "./table-row";
 
 export default async function UserList() {
-  const data = await getUser();
+  const data = await prisma.user.findMany();
 
   return (
     <TableBody>
       {data.length > 0 ? (
         <>
           {data.map(
-            ({ fname, lname, email, createdAt, phone, username, docType, back, front }, i) => (
+            ({ fname, lname, email, username, createdAt, phone, docType, back, front }, i) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="font-medium">
@@ -36,8 +33,9 @@ export default async function UserList() {
                     {username}
                   </Badge>
                 </TableCell>
-                <TableCell className="text-right text-white text-xs uppercase">
-                  {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span> }
+                <TableCell className="text-right text-white text-xs uppercase items-center flex gap-2 justify-end">
+                  {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span>}
+                  <ClientButton data={{ fname, lname: lname ?? "", email, username, docType: docType ?? "", back: back ?? "", front: front ?? "" }} />
                 </TableCell>
               </TableRow>
             )

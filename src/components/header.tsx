@@ -119,36 +119,7 @@ export default function Header() {
           />
         </Link>
         <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
-          {true ? (
-            <Link href={"/login"}>
-              <Button className="font-semibold px-3 py-1 gap-0.5">
-                Login <LogIn className="h-4 w-4" />
-              </Button>
-            </Link>
-          ) : (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="rounded-full"
-                >
-                  <CircleUser className="h-5 w-5" />
-                  <span className="sr-only">Toggle user menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+          <Link href={"/login"} className="px-3 py-2 rounded-md bg-primary">Login</Link>
         </div>
       </header>
     </div>
