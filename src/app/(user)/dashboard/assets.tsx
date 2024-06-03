@@ -8,50 +8,21 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
+import prisma from "@/util/prismaClient"
 
-const invoices = [
-    {
-        id: 101,
-        crypto: "Bitcoin BTC",
-        price: 100000,
-        change: 8,
-        market: 438,
-        volume: 387,
-        protfolio: 43
-    },
-    {
-        id: 102,
-        crypto: "Ethereum ETH",
-        price: 30000,
-        change: 4,
-        market: 438,
-        volume: 387,
-        protfolio: 43
-    },
-    {
-        id: 103,
-        crypto: "Ripple XRP",
-        price: 1000,
-        change: 5,
-        market: 438,
-        volume: 387,
-        protfolio: 43
-    },
-    {
-        id: 104,
-        crypto: "Litecoin LTC",
-        price: 50000,
-        change: 3,
-        market: 438,
-        volume: 387,
-        protfolio: 10
-    },
-]
+export async function Assets({ username }: { username: string }) {
+    const data = await prisma.portfolio.findUnique({
+        where: {
+            username
+        }, select: {
+            protables: true
+        }
+    })
 
-export function Assets() {
+    const tableData: any[] = JSON.parse(data?.protables || "[]")
+
     return (
         <Table className="w-full">
-            {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
             <TableHeader className="border rounded-md">
                 <TableRow>
                     <TableHead>Crypto</TableHead>
@@ -63,23 +34,17 @@ export function Assets() {
                 </TableRow>
             </TableHeader>
             <TableBody className="border">
-                {invoices.map((invoice) => (
+                {tableData.map((invoice) => (
                     <TableRow key={invoice.id}>
                         <TableCell className="font-medium">{invoice.crypto}</TableCell>
-                        <TableCell>${invoice.price}</TableCell>
+                        <TableCell>${invoice.prize}</TableCell>
                         <TableCell className="text-green-600">+{invoice.change}%</TableCell>
                         <TableCell>${invoice.market}B</TableCell>
                         <TableCell>${invoice.volume}M</TableCell>
-                        <TableCell className="text-right">{invoice.protfolio}%</TableCell>
+                        <TableCell className="text-right">{invoice.allocation}%</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
-            {/* <TableFooter>
-                <TableRow>
-                    <TableCell colSpan={3}>Total</TableCell>
-                    <TableCell className="text-right">$2,500.00</TableCell>
-                </TableRow>
-            </TableFooter> */}
         </Table>
     )
 }

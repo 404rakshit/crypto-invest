@@ -20,6 +20,7 @@ import UserList from "./user-list";
 import { Modal } from "./modal";
 import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
+import { PortfolioModal } from "./portfolio-modal";
 
 export default async function Dashboard() {
 
@@ -50,6 +51,7 @@ export default async function Dashboard() {
         </CardContent>
       </Card>
       <Modal />
+      <PortfolioModal />
     </main>
   );
 }

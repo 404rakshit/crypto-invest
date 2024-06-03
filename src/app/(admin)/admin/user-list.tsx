@@ -3,24 +3,27 @@ import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import prisma from "@/util/prismaClient";
 import { User } from "@prisma/client";
 import React from "react";
-import ClientTableRow from "./table-row";
-import ClientButton from "./table-row";
+import { ClientButton, PortfolioButton } from "./table-row";
 import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
 import { admin } from "@/lib/jotai";
 
 export default async function UserList() {
-  const data = await prisma.user.findMany();
+  const data = await prisma.user.findMany({
+    include: {
+      Portfolio: true,
+    }
+  });
   const session = await getSession()
 
-  if(session.email !== admin) redirect("/dashboard")
+  if (session.email !== admin) redirect("/dashboard")
 
   return (
     <TableBody>
       {data.length > 0 ? (
         <>
           {data.map(
-            ({ fname, lname, email, username, createdAt, phone, docType, back, front, verified }, i) => {
+            ({ fname, lname, email, username, createdAt, phone, docType, back, front, verified, Portfolio }, i) => {
               if (session.email === email) return null
               return (
                 <TableRow key={i}>
@@ -44,6 +47,7 @@ export default async function UserList() {
                   <TableCell className="text-right text-white text-xs uppercase items-center flex gap-2 justify-end">
                     {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span>}
                     <ClientButton data={{ fname, lname: lname ?? "", email, username, docType: docType ?? "", back: back ?? "", front: front ?? "", verified: verified }} />
+                    <PortfolioButton data={{ userPortfolio: Portfolio! }} />
                   </TableCell>
                 </TableRow>
               )

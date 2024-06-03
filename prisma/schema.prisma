@@ -52,6 +52,7 @@ model Portfolio {
   investment Int    @default(0)
   change     Int    @default(0)
   allocation Int    @default(0)
+  protables  String @default("[]")  @db.VarChar(2000)
 }
 
 model Contact {

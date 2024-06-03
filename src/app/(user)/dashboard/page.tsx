@@ -33,7 +33,7 @@ export default async function Dashboard() {
         </div>
 
         <div className="flex flex-col w-full max-w-6xl">
-          <Assets />
+          <Assets username={session.username!} />
         </div>
       </div>
     </main>

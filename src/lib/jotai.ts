@@ -1,3 +1,4 @@
+import { Portfolio } from "@prisma/client";
 import { atom } from "jotai";
 
 export const modalState = atom(false)
@@ -12,5 +13,9 @@ export const modalData = atom({
     back: "",
     verify: false
 })
+
+export const portfolioModalState = atom(false)
+
+export const portfolioData = atom<any>(null)
 
 export const admin = "asingh911339@gmail.com"
