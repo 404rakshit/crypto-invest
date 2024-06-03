@@ -8,9 +8,16 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 import PaymentTabs from "./withdrawal";
+import { getSession } from "@/util/useSession";
+import { redirect } from "next/navigation";
 
 
-export default function FundAccount() {
+export default async function FundAccount() {
+
+    const session = await getSession()
+    if (!session.isLoggedin) redirect("/login")
+    if (!session.verified) redirect("/verify")
+
     return (
         <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 bg-muted/40 min-h-screen">
             <div className="flex items-start lg:items-center justify-center py-10 px-5 max-w-3xl mx-auto w-full max-lg:min-h-screen">

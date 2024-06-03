@@ -16,8 +16,8 @@ export default function Chart() {
                     ],
                 },
             ]}
-            width={450}
-            height={200}
+            width={380}
+            height={170}
         />
     )
 }

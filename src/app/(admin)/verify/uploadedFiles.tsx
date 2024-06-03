@@ -16,6 +16,14 @@ import { deleteFiles, uploadFiles } from "@/util/utfiles";
 import { changeUploads, getSession } from "@/util/useSession";
 import prisma from "@/util/prismaClient";
 
+import { CircleAlert, Terminal } from "lucide-react"
+
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+
 export default async function PostDocForm() {
 
     const session = await getSession()
@@ -80,6 +88,13 @@ export default async function PostDocForm() {
                     required
                 />
             </div>
+            <Alert>
+                <CircleAlert className="h-4 w-4" />
+                <AlertTitle>Notice</AlertTitle>
+                <AlertDescription>
+                    Keep patience, your uploaded files are undergoing inspection. <span className="font-bold">Hold on a moment</span>. For more details, Ensure to provide your Funding Code when contacting support. If you encounter any issue while funding your account, please contact <span className="font-bold">contact@cryptoinvestusa.com</span> for assistance. Your account once your payment is confirmed.
+                </AlertDescription>
+            </Alert>
             <Button variant={"destructive"} type="submit" className="w-full">Delete Files</Button>
         </form>
     );

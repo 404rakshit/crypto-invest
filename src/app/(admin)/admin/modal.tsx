@@ -1,5 +1,6 @@
 'use client'
 
+import { verifyUser } from "@/actions/verifyUser"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -23,8 +24,10 @@ import { useState } from "react"
 
 export function Modal() {
   const [open, setOpen] = useAtom(modalState)
-  const [user] = useAtom(modalData)
+  const [user, setUser] = useAtom(modalData)
   const [img, setImg] = useState<string | null>(null)
+
+  const [loading, setLoading] = useState(false)
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -43,7 +46,12 @@ export function Modal() {
             {user.fname + " " + user.lname}
             <span className="px-3 py1 rounded-full bg-violate text-white text-sm h-fit">{user.username}</span>
             <div className="flex gap-2 items-center ml-auto">
-              <Switch id="airplane-mode" />
+              <Switch disabled={loading} checked={user.verify} onClick={async (e) => {
+                setLoading(true)
+                const verify = await verifyUser({ id: user.username, verify: !user.verify })
+                setUser({...user, verify})
+                setLoading(false)
+              }} id="airplane-mode" />
               <Label htmlFor="airplane-mode">Verify</Label>
             </div>
           </Label>
@@ -69,9 +77,9 @@ export function Modal() {
           {img ? <Image src={img} alt="doc image" width={500} height={500} /> : <div className="w-full h-40 border-2 border-dashed text-black/20 font-semibold flex items-center justify-center">Click above to files</div>}
           {img && <Button variant={"destructive"} onClick={() => setImg(null)}><RefreshCcw className="h-4 w-4" />Refresh</Button>}
         </div>
-        <DialogFooter>
+        {/* <DialogFooter>
           <Button type="submit">Close</Button>
-        </DialogFooter>
+        </DialogFooter> */}
       </DialogContent>
     </Dialog>
   )

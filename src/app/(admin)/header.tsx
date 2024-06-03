@@ -43,12 +43,6 @@ export function Sidebar() {
             select: path === "/dashboard",
         },
         {
-            icon: <CircleUserRound className="h-5 w-5" />,
-            name: "Admin",
-            link: "/admin",
-            select: path === "/admin",
-        },
-        {
             icon: <Euro className="h-5 w-5" />,
             name: "Fund Account",
             link: "/fund-account",
@@ -71,12 +65,6 @@ export function Sidebar() {
             name: "Account Verify",
             link: "/verify",
             select: path === "/verify",
-        },
-        {
-            icon: <Settings className="h-5 w-5" />,
-            name: "Settings",
-            link: "/settings",
-            select: path === "/settings",
         },
     ];
 
@@ -107,51 +95,6 @@ export function Header() {
     React.useEffect(() => {
         setSide(false)
     }, [side])
-
-    const navgation = [
-        {
-            icon: <Home className="h-5 w-5" />,
-            name: "Dashboard",
-            link: "/dashboard",
-            select: path === "/dashboard",
-        },
-        {
-            icon: <CircleUserRound className="h-5 w-5" />,
-            name: "Admin",
-            link: "/admin",
-            select: path === "/admin",
-        },
-        {
-            icon: <Euro className="h-5 w-5" />,
-            name: "Fund Account",
-            link: "/fund-account",
-            select: path === "/fund-account",
-        },
-        {
-            icon: <HandHelping className="h-5 w-5" />,
-            name: "Withdraw Funds",
-            link: "/withdraw-funds",
-            select: path === "/withdraw-funds",
-        },
-        {
-            icon: <LineChart className="h-5 w-5" />,
-            name: "Trade History",
-            link: "/trade",
-            select: path === "/trade",
-        },
-        {
-            icon: <Key className="h-5 w-5" />,
-            name: "Account Verify",
-            link: "/verify",
-            select: path === "/verify",
-        },
-        {
-            icon: <Settings className="h-5 w-5" />,
-            name: "Settings",
-            link: "/settings",
-            select: path === "/settings",
-        },
-    ];
 
     return (
         <header className="sticky top-0 z-30 flex h-14 items-center justify-between gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 w-full">

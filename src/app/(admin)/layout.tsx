@@ -7,10 +7,9 @@ import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
 
 export default async function Dashboard({ children }: { children: React.ReactNode }) {
-
   const session = await getSession()
 
-  if (!session.isLoggedin) redirect("/login")
+  if (session.email == "asingh911339@gmail.com") redirect("/admin")
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
@@ -23,7 +22,7 @@ export default async function Dashboard({ children }: { children: React.ReactNod
         </nav>
       </aside>
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <Header />
+        {session.email !== "asingh911339@gmail.com" && <Header />}
         {children}
       </div>
     </div>

@@ -75,3 +75,9 @@ export const changeUploads = async (state: boolean, data?: UploadFileResult[], d
 
   await session.save()
 }
+
+export const setVerified = async (state: boolean) => {
+  const session = await getSession()
+  session.verified = state
+  await session.save()
+}

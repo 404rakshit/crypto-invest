@@ -5,40 +5,48 @@ import { User } from "@prisma/client";
 import React from "react";
 import ClientTableRow from "./table-row";
 import ClientButton from "./table-row";
+import { getSession } from "@/util/useSession";
+import { redirect } from "next/navigation";
 
 export default async function UserList() {
   const data = await prisma.user.findMany();
+  const session = await getSession()
+
+  if(session.email !== "asingh911339@gmail.com") redirect("/dashboard")
 
   return (
     <TableBody>
       {data.length > 0 ? (
         <>
           {data.map(
-            ({ fname, lname, email, username, createdAt, phone, docType, back, front }, i) => (
-              <TableRow key={i}>
-                <TableCell>
-                  <div className="font-medium">
-                    {fname} {lname}
-                  </div>
-                  <div className="hidden text-sm text-muted-foreground md:inline">
-                    {email}
-                  </div>
-                </TableCell>
-                <TableCell className="hidden sm:table-cell">{phone}</TableCell>
-                <TableCell className="hidden sm:table-cell">
-                  <Badge
-                    className="text-xs w-fit max-w-28 line-clamp-1"
-                    variant="secondary"
-                  >
-                    {username}
-                  </Badge>
-                </TableCell>
-                <TableCell className="text-right text-white text-xs uppercase items-center flex gap-2 justify-end">
-                  {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span>}
-                  <ClientButton data={{ fname, lname: lname ?? "", email, username, docType: docType ?? "", back: back ?? "", front: front ?? "" }} />
-                </TableCell>
-              </TableRow>
-            )
+            ({ fname, lname, email, username, createdAt, phone, docType, back, front, verified }, i) => {
+              if (session.email === email) return null
+              return (
+                <TableRow key={i}>
+                  <TableCell>
+                    <div className="font-medium">
+                      {fname} {lname}
+                    </div>
+                    <div className="hidden text-sm text-muted-foreground md:inline">
+                      {email}
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden sm:table-cell">{phone}</TableCell>
+                  <TableCell className="hidden sm:table-cell">
+                    <Badge
+                      className="text-xs w-fit max-w-28 line-clamp-1"
+                      variant="secondary"
+                    >
+                      {username}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-right text-white text-xs uppercase items-center flex gap-2 justify-end">
+                    {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span>}
+                    <ClientButton data={{ fname, lname: lname ?? "", email, username, docType: docType ?? "", back: back ?? "", front: front ?? "", verified: verified }} />
+                  </TableCell>
+                </TableRow>
+              )
+            }
           )}
         </>
       ) : (

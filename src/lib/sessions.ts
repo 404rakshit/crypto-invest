@@ -7,11 +7,13 @@ export type SessionData = {
     name?: string,
     fileUploaded?: boolean 
     isLoggedin: boolean
+    verified: boolean
 }
 
 
 export const defaultSession: SessionData = {
     isLoggedin: false,
+    verified: false
 }
 
 

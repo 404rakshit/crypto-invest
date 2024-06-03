@@ -23,4 +23,5 @@ export const modalData = atom({
     docType: "",
     front: "",
     back: "",
+    verify: false
 })
