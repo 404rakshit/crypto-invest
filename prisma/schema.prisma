@@ -14,18 +14,44 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  email     String   @unique
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
   fname     String
   lname     String?
-  username  String   @unique
+  username  String     @unique
   phone     String
   password  String
   docType   String?
   front     String?
   back      String?
-  verified  Boolean  @default(false)
-  createdAt DateTime @default(now())
+  verified  Boolean    @default(false)
+  createdAt DateTime   @default(now())
+  funds     Funds[]
+  Portfolio Portfolio?
+}
+
+model Funds {
+  user          User     @relation(fields: [username], references: [username])
+  id            Int      @id @default(autoincrement())
+  username      String
+  amount        Int
+  status        String   @default("Processing")
+  walletAddress String?
+  transactionId String
+  description   String?
+  currencytype  String
+  fundType      String
+  createdAt     DateTime @default(now())
+}
+
+model Portfolio {
+  user       User   @relation(fields: [username], references: [username])
+  id         Int    @id @default(autoincrement())
+  username   String @unique
+  total      Int    @default(0)
+  investment Int    @default(0)
+  change     Int    @default(0)
+  allocation Int    @default(0)
 }
 
 model Contact {
@@ -36,21 +62,3 @@ model Contact {
   message   String
   createdAt DateTime @default(now())
 }
-
-// model Post {
-//   id        Int      @id @default(autoincrement())
-//   createdAt DateTime @default(now())
-//   updatedAt DateTime @updatedAt
-//   title     String   @db.VarChar(255)
-//   content   String?
-//   published Boolean  @default(false)
-//   author    User     @relation(fields: [authorId], references: [id])
-//   authorId  Int
-// }
-
-// model Profile {
-//   id     Int     @id @default(autoincrement())
-//   bio    String?
-//   user   User    @relation(fields: [userId], references: [id])
-//   userId Int     @unique
-// }

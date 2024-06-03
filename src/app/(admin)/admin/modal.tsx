@@ -69,7 +69,7 @@ export function Modal() {
               setImg(urls[0].url)
             }} className="p-2 border w-full line-clamp-1 leading-4 text-white rounded-md bg-green-800/90">Front</button> : <button className="p-2 border w-full line-clamp-1 leading-4 text-white rounded-md bg-red-800/90">Not Available</button>}
             {user.back ? <button onClick={async () => {
-              const urls = await getFiles(user.front)
+              const urls = await getFiles(user.back)
               setImg(urls[0].url)
             }} className="p-2 border w-full line-clamp-1 leading-4 text-white rounded-md bg-green-800/90">Back</button> : <button className="p-2 border w-full line-clamp-1 leading-4 text-white rounded-md bg-red-800/90">Not Available</button>}
           </div>

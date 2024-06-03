@@ -29,6 +29,12 @@ export async function POST(req: Request) {
                 password: await encrypt(password)
             }
         });
+        
+        await prisma.portfolio.create({
+            data:{
+                username: post.username,
+            }
+        })
 
         revalidatePath("/admin")
 

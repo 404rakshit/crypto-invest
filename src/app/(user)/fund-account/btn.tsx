@@ -7,7 +7,7 @@ import { useState } from "react"
 export default function BTN() {
     const [copy, setCopy] = useState(false)
 
-    return (<Button className={`${copy && "bg-lime-600 hover:bg-lime-700"}`} onClick={async () => {
+    return (<Button type="button" className={`${copy && "bg-lime-600 hover:bg-lime-700"}`} onClick={async () => {
         setCopy(true)
         navigator.clipboard.writeText("1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x")
         await new Promise((res) => setTimeout(() => {

@@ -1,11 +1,11 @@
-import Link from "next/link";
-import DocForm from "./documentForm";
 import Chart from "./pie-chart";
 import { InvestmentTable } from "./table";
 import { Assets } from "./assets";
 import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
 import { admin } from "@/lib/jotai";
+import { Suspense } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Dashboard() {
 
@@ -26,7 +26,9 @@ export default async function Dashboard() {
           </div>
           <div className="flex flex-1 w-full flex-col items-center gap-2">
             <h2 className="text-3xl font-bold">💰Overall Investment</h2>
-            <InvestmentTable />
+            <Suspense fallback={<DummyInvestmentTable />}>
+              <InvestmentTable username={session.username!} />
+            </Suspense>
           </div>
         </div>
 
@@ -36,4 +38,24 @@ export default async function Dashboard() {
       </div>
     </main>
   );
+}
+
+function DummyInvestmentTable() {
+  return (
+    <div className="flex gap-10 justify-center w-full p-4">
+      <section className="flex flex-col">
+        <span className="text-lg">Total Portfolio Value:</span>
+        <span className="text-lg">Investment:</span>
+        <span className="text-lg">Portfolio Change(24H):</span>
+        <span className="text-lg">Portfolio Allocation:</span>
+      </section>
+      <section className="flex flex-col text-muted-foreground text-lg gap-2">
+        <Skeleton className="h-5 w-10" />
+        <Skeleton className="h-5 w-10" />
+        <Skeleton className="h-5 w-10" />
+        <Skeleton className="h-5 w-10" />
+      </section>
+
+    </div>
+  )
 }

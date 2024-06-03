@@ -55,14 +55,14 @@ export default function InvestTray() {
         <div className="mx-auto grid w-full max-w-6xl items-start gap-6">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cards.map(({ title, description, image }, i) => (
-              <Card key={i} className="shadow-[20px_20px_50px_5px_rgba(162.00000000000003,_172.00000000000006,_202.00000000000003,_0.15)] border-none">
+              <Card key={i} className="shadow-[20px_20px_50px_5px_rgba(162.00000000000003,_172.00000000000006,_202.00000000000003,_0.15)] border-none rounded-3xl">
                 <CardHeader className="items-center text-center gap-2">
                     <div className="p-1.5 w-fit rounded-full bg-muted flex-1">
                       <Image
                         src={image}
                         alt={title}
-                        width={50}
-                        height={50}
+                        width={60}
+                        height={60}
                         className="w-10 h-10"
                       />
                     </div>

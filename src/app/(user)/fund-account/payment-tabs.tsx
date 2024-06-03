@@ -20,9 +20,11 @@ import { getSession } from "@/util/useSession"
 import { Check, Copy, QrCode } from "lucide-react"
 import { useState } from "react"
 import BTN from "./btn"
+import BTCForm from "./btc-form"
+import UTDCForm from "./utdc.form"
 
 export default async function PaymentTabs() {
-    
+
     const session = await getSession()
 
     return (
@@ -40,40 +42,11 @@ export default async function PaymentTabs() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        <section className="grid md:grid-cols-2 md:gap-2 gap-1">
-                            <div className="space-y-1">
-                                <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                                <Input id="username" disabled defaultValue={session.username} placeholder="peduatre" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="amount">Amount <span className="text-red-500">*</span></Label>
-                                <Input type="number" id="amount" placeholder="0.325 BTC" />
-                            </div>
-                        </section>
-                        <div className="space-y-1">
-                            <Label htmlFor="pay">Send Payment To:<span className="text-red-500">*</span></Label>
-                            <span className="flex gap-1">
-                                <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} id="pay" />
-                                <BTN />
-                                <Button><QrCode className="w-4 h-4" /></Button>
-                            </span>
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="sender">Senders Wallet Address: <span className="text-red-500">*</span></Label>
-                            <Input id="sender" placeholder="Enter your wallet address" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="sender">Transaction Hash ID <span className="text-red-500">*</span></Label>
-                            <Input id="sender" placeholder="Enter transaction Hash ID" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="sender">Description</Label>
-                            <Textarea id="sender" placeholder="Write description..." />
-                        </div>
+                        <BTCForm username={session.username || ""} />
                     </CardContent>
-                    <CardFooter>
+                    {/* <CardFooter>
                         <Button>Fund Now</Button>
-                    </CardFooter>
+                    </CardFooter> */}
                 </Card>
             </TabsContent>
             <TabsContent value="usdt">
@@ -85,36 +58,11 @@ export default async function PaymentTabs() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-2">
-                        <section className="grid md:grid-cols-2 md:gap-2 gap-1">
-                            <div className="space-y-1">
-                                <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
-                                <Input id="username" placeholder="peduatre" disabled defaultValue={session.username}  />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="amount">Amount <span className="text-red-500">*</span></Label>
-                                <Input type="number" id="amount" placeholder="$500" />
-                            </div>
-                        </section>
-                        <div className="space-y-1">
-                            <Label htmlFor="pay">Send Payment To:<span className="text-red-500">*</span></Label>
-                            <span className="flex gap-1">
-                                <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} id="pay" />
-                                <BTN />
-                                <Button><QrCode className="w-4 h-4" /></Button>
-                            </span>
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="sender">Transaction Hash ID <span className="text-red-500">*</span></Label>
-                            <Input id="sender" placeholder="Enter transaction Hash ID" />
-                        </div>
-                        <div className="space-y-1">
-                            <Label htmlFor="sender">Description</Label>
-                            <Textarea id="sender" placeholder="Write description..." />
-                        </div>
+                        <UTDCForm username={session.username || ""} />
                     </CardContent>
-                    <CardFooter>
+                    {/* <CardFooter>
                         <Button>Fund Now</Button>
-                    </CardFooter>
+                    </CardFooter> */}
                 </Card>
             </TabsContent>
         </Tabs>

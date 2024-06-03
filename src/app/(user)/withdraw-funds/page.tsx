@@ -34,7 +34,7 @@ export default async function FundAccount() {
                             </AlertDescription>
                         </Alert>
                     </div>
-                    <PaymentTabs />
+                    <PaymentTabs username={session.username || ""} />
                 </div>
             </div>
         </main>

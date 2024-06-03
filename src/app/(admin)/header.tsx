@@ -1,7 +1,7 @@
 'use client'
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import {  CircleUserIcon, Euro, HandHelping, Home, Key, LineChart, UserRound } from "lucide-react";
+import {  BadgeDollarSign, CircleUserIcon, Euro, HandHelping, Home, Key, LineChart, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -37,6 +37,12 @@ export function Sidebar() {
             link: "/admin",
             select: path === "/admin",
         },
+        {
+            icon: <BadgeDollarSign className="h-5 w-5" />,
+            name: "Manage Funds",
+            link: "/manage-funds",
+            select: path === "/manage-funds",
+        }
     ];
 
     return <TooltipProvider>
@@ -95,9 +101,6 @@ export function Header() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Settings</DropdownMenuItem>
-                    <DropdownMenuItem>Support</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => {
                         logout()

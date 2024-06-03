@@ -119,7 +119,7 @@ export default function Header() {
           />
         </Link>
         <div className="flex items-center gap-4 md:gap-2 lg:gap-4">
-          <Link href={"/login"} className="px-3 py-2 rounded-md bg-primary">Login</Link>
+          <Link href={"/login"} className="px-3 py-2 rounded-md bg-primary font-semibold">Get Started</Link>
         </div>
       </header>
     </div>

@@ -22,7 +22,7 @@ export const Banner = () => {
           Join millions of people around the world investing cryptocurrency with
           us.
         </h3>
-        <Link href={"/buy-crypto"}>
+        <Link href={"/invest-crypto"}>
           <Button className="text-lg w-fit px-12 font-bold rounded-full mt-4 drop-shadow-md bg-gradient-to-b from-primary to-orange-500">
             Invest With Us Now
           </Button>

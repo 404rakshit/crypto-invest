@@ -1,5 +1,15 @@
+import prisma from "@/util/prismaClient"
 
-export function InvestmentTable() {
+export async function InvestmentTable({ username }: { username: string }) {
+
+    const data = await prisma.user.findUnique({
+        where: {
+            username
+        }, select: {
+            Portfolio: true
+        }
+    })
+
     return (
         <div className="flex gap-10 justify-center w-full p-4">
             <section className="flex flex-col">
@@ -9,10 +19,10 @@ export function InvestmentTable() {
                 <span className="text-lg">Portfolio Allocation:</span>
             </section>
             <section className="flex flex-col text-muted-foreground text-lg">
-                <span>$20,000</span>
-                <span>$1,000</span>
-                <span>+13%</span>
-                <span>90%</span>
+                <span>${data?.Portfolio?.total}</span>
+                <span>${data?.Portfolio?.investment}</span>
+                <span>{data?.Portfolio?.change}%</span>
+                <span>{data?.Portfolio?.allocation}%</span>
             </section>
 
         </div>

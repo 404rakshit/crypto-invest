@@ -11,11 +11,11 @@ import Exchange from "./exchange";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://crypto-invest-eight.vercel.app/"),
-  title: "Buy Crypto | CryptoInvestUSA",
+  title: "Invest Crypto | CryptoInvestUSA",
   description: "The new way to invest your digital currency.",
   openGraph: {
     images: "/home.png",
-    title: "Buy Crypto | CryptoInvestUSA",
+    title: "Invest Crypto | CryptoInvestUSA",
     description: "The new way to invest your digital currency.",
     url: "https://cryptoinvestusa.com",
     type: "website",
@@ -26,7 +26,7 @@ export default function About() {
   return (
     <div className="flex min-h-screen w-full flex-col">
       <Hero
-        title="Buy & Sell Cryptocurrency"
+        title="Invest in Cryptocurrency"
         desc="Dive into Crypto Investments Today and Explore the World of Digital Assets with Crypto Invest USA"
         heroImage="https://images.unsplash.com/photo-1629877521896-4719f02df3c7?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       />

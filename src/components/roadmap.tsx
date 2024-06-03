@@ -99,7 +99,7 @@ export default function Roadmap() {
                   className="max-sm:basis-4/5 max-md:basis-1/2 basis-1/3 h-full"
                 >
                   <div className="p-1 h-full">
-                    <Card className="bg-purple min-h-[270px]">
+                    <Card className="bg-purple min-h-[270px] rounded-3xl">
                       <CardHeader className="flex gap-2 items-center">
                         <div className="p-1.5 bg-gradient-to-tr from-yellow-600 to-orange-600 backdrop-blur-sm rounded-full flex items-center gap-2 shrink-0 max-w-72 mx-auto">
                           <div

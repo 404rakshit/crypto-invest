@@ -67,7 +67,7 @@ export function Assets() {
                     <TableRow key={invoice.id}>
                         <TableCell className="font-medium">{invoice.crypto}</TableCell>
                         <TableCell>${invoice.price}</TableCell>
-                        <TableCell>+{invoice.change}%</TableCell>
+                        <TableCell className="text-green-600">+{invoice.change}%</TableCell>
                         <TableCell>${invoice.market}B</TableCell>
                         <TableCell>${invoice.volume}M</TableCell>
                         <TableCell className="text-right">{invoice.protfolio}%</TableCell>
