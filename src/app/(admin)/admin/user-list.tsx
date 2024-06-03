@@ -7,12 +7,13 @@ import ClientTableRow from "./table-row";
 import ClientButton from "./table-row";
 import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
+import { admin } from "@/lib/jotai";
 
 export default async function UserList() {
   const data = await prisma.user.findMany();
   const session = await getSession()
 
-  if(session.email !== "asingh911339@gmail.com") redirect("/dashboard")
+  if(session.email !== admin) redirect("/dashboard")
 
   return (
     <TableBody>

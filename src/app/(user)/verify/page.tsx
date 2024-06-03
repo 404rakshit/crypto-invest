@@ -4,10 +4,13 @@ import { getSession, setVerified } from "@/util/useSession";
 import PostDocForm from "./uploadedFiles";
 import prisma from "@/util/prismaClient";
 import Verified from "./verified";
+import { redirect } from "next/navigation";
+import { admin } from "@/lib/jotai";
 
 export default async function Dashboard() {
 
   const session =  await getSession()
+  if (session.email == admin) redirect("/admin")
 
   const data = await prisma.user.findUnique({
     where: {

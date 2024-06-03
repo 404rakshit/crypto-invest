@@ -1,10 +1,12 @@
 import { getSession } from "@/util/useSession";
 import FundsTable from "./funds-table";
 import { redirect } from "next/navigation";
+import { admin } from "@/lib/jotai";
 
 export default async function FundAccount() {
 
     const session = await getSession()
+    if (session.email == admin) redirect("/admin")
     if (!session.isLoggedin) redirect("/login")
     if (!session.verified) redirect("/verify")
 

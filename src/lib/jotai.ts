@@ -25,3 +25,5 @@ export const modalData = atom({
     back: "",
     verify: false
 })
+
+export const admin = "asingh911339@gmail.com"

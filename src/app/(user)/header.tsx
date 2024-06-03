@@ -1,7 +1,7 @@
 'use client'
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import {  CircleUserIcon, Euro, HandHelping, Home, Key, LineChart, UserRound } from "lucide-react";
+import {  Euro, HandHelping, Home, Key, LineChart, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -32,10 +32,34 @@ export function Sidebar() {
 
     const navgation = [
         {
-            icon: <CircleUserIcon className="h-5 w-5" />,
-            name: "Admin",
-            link: "/admin",
-            select: path === "/admin",
+            icon: <Home className="h-5 w-5" />,
+            name: "Dashboard",
+            link: "/dashboard",
+            select: path === "/dashboard",
+        },
+        {
+            icon: <Euro className="h-5 w-5" />,
+            name: "Fund Account",
+            link: "/fund-account",
+            select: path === "/fund-account",
+        },
+        {
+            icon: <HandHelping className="h-5 w-5" />,
+            name: "Withdraw Funds",
+            link: "/withdraw-funds",
+            select: path === "/withdraw-funds",
+        },
+        {
+            icon: <LineChart className="h-5 w-5" />,
+            name: "Trade History",
+            link: "/trade",
+            select: path === "/trade",
+        },
+        {
+            icon: <Key className="h-5 w-5" />,
+            name: "Account Verify",
+            link: "/verify",
+            select: path === "/verify",
         },
     ];
 

@@ -27,9 +27,10 @@ export const login = async (data: User) => {
   session.name = `${data.fname} ${data.lname}`
   session.isLoggedin = true
   session.fileUploaded = !!data.front && !!data.back
+  session.verified = data.verified
 
   await session.save()
-  redirect("/verify")
+  redirect("/dashboard")
 
 };
 
