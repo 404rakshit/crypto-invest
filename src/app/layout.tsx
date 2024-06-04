@@ -19,7 +19,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} overflow-x-hidden text-violate`}>
+      <body className={`${inter.className} overflow-x-hidden text-violet-800`}>
         <ReactQuery>
           {children}
           <Footer />
