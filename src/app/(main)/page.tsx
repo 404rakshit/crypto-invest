@@ -30,8 +30,8 @@ export default function Home() {
       />
       <main className="flex min-h-[calc(100vh_-_theme(spacing.16))] flex-1 flex-col max-md:gap-4 bg-muted/40 pt-2">
         <Services />
-        <Roadmap />
         <InvestTray />
+        <Roadmap />
         <CryptoTable />
         <Banner />
       </main>
