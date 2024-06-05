@@ -9,15 +9,9 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import prisma from "@/util/prismaClient"
+import { Portfolio } from "@prisma/client"
 
-export async function Assets({ username }: { username: string }) {
-    const data = await prisma.portfolio.findUnique({
-        where: {
-            username
-        }, select: {
-            protables: true
-        }
-    })
+export function Assets({ data }: { data: Pick<Portfolio, "protables"> }) {
 
     const tableData: any[] = JSON.parse(data?.protables || "[]")
 

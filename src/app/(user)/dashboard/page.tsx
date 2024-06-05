@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { admin } from "@/lib/jotai";
 import { Suspense } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
+import prisma from "@/util/prismaClient";
 
 export default async function Dashboard() {
 
@@ -14,6 +15,14 @@ export default async function Dashboard() {
   if (!session.isLoggedin) redirect("/login")
   if (!session.verified) redirect("/verify")
 
+  const data = await prisma.portfolio.findUnique({
+    where: {
+      username: session.username
+    }, select: {
+      protables: true
+    }
+  })
+
   return (
     <main className="flex flex-col items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 bg-muted/40 min-h-screen">
       <div className="flex flex-col gap-8 items-start lg:items-center p-5 px-5 max-w-7xl mx-auto w-full">
@@ -21,7 +30,7 @@ export default async function Dashboard() {
           <div className="flex flex-1 flex-col items-center gap-2">
             <h1 className="text-3xl font-bold">Portfolio Overview</h1>
             <div className="-translate-x-8">
-              <Chart />
+              <Chart data={data!} />
             </div>
           </div>
           <div className="flex flex-1 w-full flex-col items-center gap-2">
@@ -33,7 +42,7 @@ export default async function Dashboard() {
         </div>
 
         <div className="flex flex-col w-full max-w-6xl">
-          <Assets username={session.username!} />
+          <Assets data={data!} />
         </div>
       </div>
     </main>
