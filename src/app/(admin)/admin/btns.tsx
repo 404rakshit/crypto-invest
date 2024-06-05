@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { modalData, modalState, portfolioModalState, portfolioData } from '@/lib/jotai'
+import { modalData, modalState, portfolioModalState, portfolioData, tradeData } from '@/lib/jotai'
 import { useAtom } from 'jotai'
 import React from 'react'
 import { Modal } from './modal'
@@ -18,12 +18,14 @@ export function ClientButton({ data: { fname, lname, email, username, docType, b
     )
 }
 
-export function PortfolioButton({ data: { userPortfolio } }: { data: { userPortfolio: Portfolio } }) {
+export function PortfolioButton({ data: { userPortfolio, userTrade } }: { data: { userPortfolio: Portfolio, userTrade: string } }) {
 
     const [state, setState] = useAtom(portfolioModalState)
     const [portfolio, setPortfolio] = useAtom(portfolioData)
+    const [trade, setTrade] = useAtom(tradeData)
 
     return (
-        <Button size={"icon"} className='rounded-full bg-sky-600 hover:bg-sky-700 text-white' onClick={() => { setState(true), setPortfolio(userPortfolio) }}><AlignEndHorizontal className='h-4 w-4' /></Button>
+        <Button size={"icon"} className='rounded-full bg-sky-600 hover:bg-sky-700 text-white' onClick={() => { setState(true), setPortfolio(userPortfolio), setTrade(userTrade), console.log(userTrade);
+         }}><AlignEndHorizontal className='h-4 w-4' /></Button>
     )
 }

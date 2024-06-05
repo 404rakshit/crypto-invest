@@ -39,8 +39,8 @@ export async function Assets({ username }: { username: string }) {
                         <TableCell className="font-medium">{invoice.crypto}</TableCell>
                         <TableCell>${invoice.prize}</TableCell>
                         <TableCell className="text-green-600">+{invoice.change}%</TableCell>
-                        <TableCell>${invoice.market}B</TableCell>
-                        <TableCell>${invoice.volume}M</TableCell>
+                        <TableCell>${invoice.market}</TableCell>
+                        <TableCell>${invoice.volume}</TableCell>
                         <TableCell className="text-right">{invoice.allocation}%</TableCell>
                     </TableRow>
                 ))}

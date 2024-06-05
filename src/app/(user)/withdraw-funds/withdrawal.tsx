@@ -8,14 +8,13 @@ import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { QrCode } from "lucide-react";
+import { AlertCircle, QrCode } from "lucide-react";
 import { fundAccount } from "@/actions/fundAccount";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function WithdrawForm({ username }: { username: string }) {
+export default function WithdrawForm({ username, totalAmount }: { username: string; totalAmount: number }) {
     const [isPending, setPending] = useState(false);
-    const router = useRouter();
 
     function OnError(errData: any) {
         toast("Error Occured", {
@@ -36,6 +35,13 @@ export default function WithdrawForm({ username }: { username: string }) {
         setPending(false);
     };
 
+    function amountErr() {
+        toast.error("Withdrawal Amount Exceeded", {
+            description: `Your current amount balance is only $${totalAmount}, which is less than your withdrawal amount.`
+        })
+        setPending(false)
+    }
+
     const handleForm = async (e: FormEvent<HTMLFormElement>) => {
         setPending(true);
 
@@ -50,7 +56,8 @@ export default function WithdrawForm({ username }: { username: string }) {
 
         if (!amount) return alrt("Amount");
         if (!transactionId) return alrt("Transcation ID");
-        
+
+        if (amount > totalAmount) return amountErr()
 
         const res = await fetch(`/api/fundAccount`, {
             method: "POST",
@@ -91,6 +98,10 @@ export default function WithdrawForm({ username }: { username: string }) {
                     <div className="space-y-1">
                         <Label htmlFor="username">Username <span className="text-red-500">*</span></Label>
                         <Input name="username" id="username" disabled defaultValue={username} placeholder="peduatre" />
+                    </div>
+                    <div className="border border-red-800/30 rounded-md p-3 shadow-md flex gap-2 items-start">
+                        <AlertCircle className="w-5 h-5 shrink-0" />
+                        <p className="text-sm">Your current account balance for now is <span className="font-bold">${totalAmount}</span>. Warning you can&apos;t exceed the withdrawal amount.</p>
                     </div>
                     <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                         <div className="space-y-1">

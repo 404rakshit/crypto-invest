@@ -3,7 +3,7 @@ import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import prisma from "@/util/prismaClient";
 import { User } from "@prisma/client";
 import React from "react";
-import { ClientButton, PortfolioButton } from "./table-row";
+import { ClientButton, PortfolioButton } from "./btns";
 import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
 import { admin } from "@/lib/jotai";
@@ -23,7 +23,7 @@ export default async function UserList() {
       {data.length > 0 ? (
         <>
           {data.map(
-            ({ fname, lname, email, username, createdAt, phone, docType, back, front, verified, Portfolio }, i) => {
+            ({ fname, lname, email, username, createdAt, phone, docType, back, front, verified, Portfolio, trade }, i) => {
               if (session.email === email) return null
               return (
                 <TableRow key={i}>
@@ -47,7 +47,7 @@ export default async function UserList() {
                   <TableCell className="text-right text-white text-xs uppercase items-center flex gap-2 justify-end">
                     {!docType ? <span className="px-2 py-1 rounded-md bg-red-600">No Uploads</span> : <span className="px-2 py-1 rounded-md bg-green-700">{docType}</span>}
                     <ClientButton data={{ fname, lname: lname ?? "", email, username, docType: docType ?? "", back: back ?? "", front: front ?? "", verified: verified }} />
-                    <PortfolioButton data={{ userPortfolio: Portfolio! }} />
+                    <PortfolioButton data={{ userPortfolio: Portfolio!, userTrade: trade }} />
                   </TableCell>
                 </TableRow>
               )

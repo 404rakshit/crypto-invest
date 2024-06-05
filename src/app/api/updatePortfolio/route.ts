@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 export async function POST(req: Request) {
     try {
 
-        const { username, total, investment, change, allocation, protables } = await req.json();
+        const { username, total, investment, change, allocation, protables, trade } = await req.json();
 
         const portfolio = await prisma.user.update({
             where: {
@@ -20,9 +20,12 @@ export async function POST(req: Request) {
                         total: +total,
                         protables,
                     }
-                }
+                },
+                trade
             }
         })
+
+        revalidatePath("/admin")
 
         return NextResponse.json({ portfolio, user: true }, { status: 201 });
     } catch (err: any) {

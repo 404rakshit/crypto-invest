@@ -28,6 +28,7 @@ model User {
   createdAt DateTime   @default(now())
   funds     Funds[]
   Portfolio Portfolio?
+  trade     String     @default("[]") @db.VarChar(3000)
 }
 
 model Funds {
@@ -52,7 +53,7 @@ model Portfolio {
   investment Int    @default(0)
   change     Int    @default(0)
   allocation Int    @default(0)
-  protables  String @default("[]")  @db.VarChar(2000)
+  protables  String @default("[]") @db.VarChar(2000)
 }
 
 model Contact {
