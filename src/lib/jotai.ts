@@ -18,4 +18,6 @@ export const portfolioModalState = atom(false)
 
 export const portfolioData = atom<any>(null)
 
-export const admin = "rajanubhav829@gmail.com"
+export const admin = "tony.sir1975@gmail.com"
+
+// rajanubhav829@gmail.com

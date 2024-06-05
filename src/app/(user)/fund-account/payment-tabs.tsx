@@ -19,7 +19,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { getSession } from "@/util/useSession"
 import { Check, Copy, QrCode } from "lucide-react"
 import { useState } from "react"
-import BTN from "./btn"
+import { BTN } from "./btn"
 import BTCForm from "./btc-form"
 import UTDCForm from "./utdc.form"
 

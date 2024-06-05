@@ -8,11 +8,11 @@ import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { QrCode } from "lucide-react";
-import BTN from "./btn";
+import { BTN, QrBTN } from "./btn";
 
 export default function UTDCForm({ username }: { username: string }) {
     const [isPending, setPending] = useState(false);
+    const router = useRouter();
 
     function OnError(errData: any) {
         toast("Error Occured", {
@@ -22,8 +22,12 @@ export default function UTDCForm({ username }: { username: string }) {
 
     function OnSuccess(resData: any) {
         toast("Contact Form Sumbittion", {
-            description: String(resData),
+            description: String("Hurray!, Your funds has been registered successfully."),
+            onAutoClose: () => {
+                router.refresh()
+            }
         });
+
     }
 
     const alrt = (field: string) => {
@@ -74,6 +78,7 @@ export default function UTDCForm({ username }: { username: string }) {
         <form
             onSubmit={handleForm}
             className="grid gap-4 w-full"
+            id="utdcform"
         >
             <section className="grid md:grid-cols-2 md:gap-2 gap-1">
                 <div className="space-y-1">
@@ -90,7 +95,7 @@ export default function UTDCForm({ username }: { username: string }) {
                 <span className="flex gap-1">
                     <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} onChange={() => null} id="pay" />
                     <BTN />
-                    <Button><QrCode className="w-4 h-4" /></Button>
+                    <QrBTN />
                 </span>
             </div>
             <div className="space-y-1">

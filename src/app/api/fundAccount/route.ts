@@ -1,4 +1,5 @@
 import prisma from "@/util/prismaClient";
+import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
@@ -21,6 +22,8 @@ export async function POST(req: Request) {
                 username
             }
         })
+
+        revalidatePath("/trade")
 
         return NextResponse.json({ data, user: true }, { status: 201 });
     } catch (err: any) {

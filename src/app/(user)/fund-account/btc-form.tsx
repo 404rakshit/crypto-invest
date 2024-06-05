@@ -8,9 +8,7 @@ import { FormEvent, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
-import { QrCode } from "lucide-react";
-import BTN from "./btn";
-import { fundAccount } from "@/actions/fundAccount";
+import { BTN, QrBTN } from "./btn";
 
 export default function BTCForm({ username }: { username: string }) {
     const [isPending, setPending] = useState(false);
@@ -25,7 +23,10 @@ export default function BTCForm({ username }: { username: string }) {
     function OnSuccess(resData: any) {
         toast("Contact Form Sumbittion", {
             description: String(resData),
-        });
+            onAutoClose: () => {
+               router.refresh()
+            }
+        })
     }
 
     const alrt = (field: string) => {
@@ -95,7 +96,7 @@ export default function BTCForm({ username }: { username: string }) {
                 <span className="flex gap-1">
                     <Input value={"1mxeP1zTpyrA5wG7jrDhVDXM64Hf1KW1x"} onChange={() => null} id="pay" />
                     <BTN />
-                    <Button><QrCode className="w-4 h-4" /></Button>
+                    <QrBTN />
                 </span>
             </div>
             <div className="space-y-1">

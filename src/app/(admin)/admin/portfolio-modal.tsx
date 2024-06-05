@@ -38,9 +38,9 @@ export function PortfolioModal() {
         setTemp(updatedItems);
     };
 
-    const editPrize = (property: string, index: number) => {
+    const editPrice = (property: string, index: number) => {
         const updatedItems = [...temp];
-        updatedItems[index] = { ...updatedItems[index], prize: property };
+        updatedItems[index] = { ...updatedItems[index], price: property };
         setTemp(updatedItems);
     };
 
@@ -105,16 +105,16 @@ export function PortfolioModal() {
                     </div>
                     <div className="flex justify-between w-full">
                         <span className="capitalize">crypto</span>
-                        <span className="capitalize">prize</span>
+                        <span className="capitalize">price</span>
                         <span className="capitalize">change</span>
                         <span className="capitalize">market</span>
                         <span className="capitalize">volume</span>
                         <span className="capitalize">allocation</span>
                     </div>
-                    {temp.length > 0 ? temp.map(({ allocation, change, crypto, market, prize, volume }, i) => (
+                    {temp.length > 0 ? temp.map(({ allocation, change, crypto, market, price, volume }, i) => (
                         <div key={i} className="flex justify-between gap-2">
                             <Input value={crypto} onChange={e => editCrypto(e.target.value, i)} />
-                            <Input type="number" value={prize} onChange={e => editPrize(e.target.value, i)} />
+                            <Input type="number" value={price} onChange={e => editPrice(e.target.value, i)} />
                             <Input type="number" value={change} onChange={e => editChange(e.target.value, i)} />
                             <Input type="number" value={market} onChange={e => editMarket(e.target.value, i)} />
                             <Input type="number" value={volume} onChange={e => editVolume(e.target.value, i)} />
@@ -126,7 +126,7 @@ export function PortfolioModal() {
                         <Button onClick={updatePortfolio} disabled={loading}>{loading ? "Saving..." : "Save Changes"}</Button>
                         <Button onClick={() => setTemp([...temp, {
                             crypto: "Bitcoin BTC",
-                            prize: "0",
+                            price: "0",
                             change: "0",
                             market: "0",
                             volume: "0",
