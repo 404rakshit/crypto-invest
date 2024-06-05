@@ -25,7 +25,7 @@ export function PortfolioButton({ data: { userPortfolio, userTrade } }: { data: 
     const [trade, setTrade] = useAtom(tradeData)
 
     return (
-        <Button size={"icon"} className='rounded-full bg-sky-600 hover:bg-sky-700 text-white' onClick={() => { setState(true), setPortfolio(userPortfolio), setTrade(userTrade), console.log(userTrade);
+        <Button size={"icon"} className='rounded-full bg-sky-600 hover:bg-sky-700 text-white' onClick={() => { setState(true), setPortfolio(userPortfolio), setTrade(userTrade);
          }}><AlignEndHorizontal className='h-4 w-4' /></Button>
     )
 }

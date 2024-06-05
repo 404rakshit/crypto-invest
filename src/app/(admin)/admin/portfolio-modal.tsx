@@ -118,7 +118,7 @@ export function PortfolioModal() {
             })
         })
 
-        console.log(res);
+        // console.log(res);
 
         toast.success("User Updated Successfully!", {
             description: "Portfolio and Trade are updated."

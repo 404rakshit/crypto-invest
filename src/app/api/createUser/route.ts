@@ -9,7 +9,7 @@ export async function GET() {
 
         return NextResponse.json(users, { status: 201 });
     } catch (err: any) {
-        console.log(err);
+        // console.log(err);
         return NextResponse.json(err.message || err || "Database Error", { status: err.status || 500 });
     }
 }
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ post, user: true }, { status: 201 });
     } catch (err: any) {
-        console.log(err);
+        // console.log(err);
         return NextResponse.json(err.message || err || "Database Error", { status: err.status || 500 });
     }
 }

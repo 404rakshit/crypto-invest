@@ -11,9 +11,13 @@ import {
 import prisma from "@/util/prismaClient"
 import { Portfolio } from "@prisma/client"
 
-export function Assets({ data }: { data: Pick<Portfolio, "protables"> }) {
+export function Assets({ data }: { data: Pick<Portfolio, "protables" | "investment"> }) {
 
     const tableData: any[] = JSON.parse(data?.protables || "[]")
+
+    function roundeUp(num: number) {
+        return Math.floor(num * 100) / 100
+    }
 
     return (
         <Table className="w-full">
@@ -34,8 +38,8 @@ export function Assets({ data }: { data: Pick<Portfolio, "protables"> }) {
                         <TableCell>${invoice.prize}</TableCell>
                         <TableCell className="text-green-600">+{invoice.change}%</TableCell>
                         <TableCell>${invoice.market}</TableCell>
-                        <TableCell>${invoice.volume}</TableCell>
-                        <TableCell className="text-right">{invoice.allocation}%</TableCell>
+                        <TableCell>${roundeUp(invoice.market / invoice.prize)}</TableCell>
+                        <TableCell className="text-right">{roundeUp((data.investment /invoice.prize) * 100)}%</TableCell>
                     </TableRow>
                 ))}
             </TableBody>

@@ -3,18 +3,22 @@
 import { PieChart } from '@mui/x-charts/PieChart';
 import { Portfolio } from '@prisma/client';
 
-export default function Chart({ data }: { data: Pick<Portfolio, "protables"> }) {
+export default function Chart({ data }: { data: Pick<Portfolio, "protables" | "investment"> }) {
 
     const tableData: any[] = JSON.parse(data?.protables || "[]")
+
+    function roundeUp(num: number) {
+        return Math.floor(num * 100) / 100
+    }
 
     return (
         <PieChart
             series={[
                 {
-                    data: tableData.map(({ crypto, allocation }, i) => ({
+                    data: tableData.map(({ crypto, allocation, prize }, i) => ({
                         id: i,
                         label: crypto,
-                        value: allocation
+                        value: roundeUp((data.investment / prize) * 100)
                     }))
                     // [
                     //     { id: 0, value: 10, label: 'Bitcoin BTC' },

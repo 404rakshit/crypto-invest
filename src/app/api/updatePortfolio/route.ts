@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ portfolio, user: true }, { status: 201 });
     } catch (err: any) {
-        console.log(err);
+        // console.log(err);
         return NextResponse.json(err.message || err || "Database Error", { status: err.status || 500 });
     }
 }

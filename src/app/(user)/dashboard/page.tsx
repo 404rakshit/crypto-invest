@@ -19,7 +19,8 @@ export default async function Dashboard() {
     where: {
       username: session.username
     }, select: {
-      protables: true
+      protables: true,
+      investment: true
     }
   })
 
