@@ -19,7 +19,7 @@ export const portfolioModalState = atom(false)
 export const portfolioData = atom<any>(null)
 export const tradeData = atom<any>(null)
 
-export const admin = "cse.tirtha@gmail.com"
+export const admin = "tony.sir1975@gmail.com"
 
 // rajanubhav829@gmail.com
 // cse.tirtha@gmail.com

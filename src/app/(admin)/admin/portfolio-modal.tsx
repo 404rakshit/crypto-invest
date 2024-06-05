@@ -37,7 +37,7 @@ export function PortfolioModal() {
     useEffect(() => {
         const pasreData = portfolio?.protables ? JSON.parse(portfolio.protables) : JSON.parse('[]')
         setTemp(pasreData)
-            const newparseTradeData = trade ? JSON.parse(trade) : JSON.parse('[]')
+        const newparseTradeData = trade ? JSON.parse(trade) : JSON.parse('[]')
         setTempTrade(newparseTradeData)
     }, [portfolio])
 
@@ -120,11 +120,15 @@ export function PortfolioModal() {
 
         console.log(res);
 
-        toast.success("User Updated Successfully!",{
+        toast.success("User Updated Successfully!", {
             description: "Portfolio and Trade are updated."
         })
 
         setLoading(false)
+    }
+
+    function roundeUp(num: number) {
+        return Math.floor(num * 100) / 100
     }
 
     return (
@@ -165,8 +169,8 @@ export function PortfolioModal() {
                                     <Input type="number" value={prize} onChange={e => editPrice(e.target.value, i)} />
                                     <Input type="number" value={change} onChange={e => editChange(e.target.value, i)} />
                                     <Input type="number" value={market} onChange={e => editMarket(e.target.value, i)} />
-                                    <Input type="number" value={volume} onChange={e => editVolume(e.target.value, i)} />
-                                    <Input type="number" value={allocation} onChange={e => editAllocation(e.target.value, i)} />
+                                    <Input disabled type="number" value={roundeUp(market / prize)} onChange={e => editVolume(e.target.value, i)} />
+                                    <Input disabled type="number" value={roundeUp((portfolio?.investment / prize) * 100)} onChange={e => editAllocation(e.target.value, i)} />
                                     <Button variant={"outline"} className="px-2" onClick={() => setTemp(temp.filter((e, index) => index !== i))} size={"icon"}><CircleX className="h-5 w-5 text-red-700" /></Button>
                                 </div>
                             )) : <div className="m-auto py-4 text-muted-foreground">No Data Available</div>}
