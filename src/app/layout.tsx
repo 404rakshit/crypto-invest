@@ -17,15 +17,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  
   return (
     <html lang="en">
       <body className={`${inter.className} overflow-x-hidden text-violet-800 flex min-h-screen`}>
-        <div className="flex flex-col gap-1 m-auto">
+        {/* <div className="flex flex-col gap-1 m-auto">
           <Image src="/payment-due.gif" alt="Crypto Invest USA Developer's Payment Due" height={700} width={700} className="aspect-video" />
           <Link target="_blank" href={"mailto:devproject193@gmail.com"}>
             <Button variant={"destructive"} className="w-full">Contact Developer Now</Button>
           </Link>
-        </div>
+        </div> */}
+        <span className="text-5xl text-black font-bold m-auto">404 Error</span>
         {/* <ReactQuery>
           {children}
           <Footer />
