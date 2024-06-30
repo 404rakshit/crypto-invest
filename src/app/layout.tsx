@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/footer";
-import ReactQuery from "@/util/queryProvider";
-import { Toaster } from "@/components/ui/sonner";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const inter = Bricolage_Grotesque({ subsets: ["latin"], display: "swap" });
 
@@ -19,12 +19,18 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} overflow-x-hidden text-violet-800`}>
-        <ReactQuery>
+      <body className={`${inter.className} overflow-x-hidden text-violet-800 flex min-h-screen`}>
+        <div className="flex flex-col gap-1 m-auto">
+          <Image src="/payment-due.gif" alt="Crypto Invest USA Developer's Payment Due" height={700} width={700} className="aspect-video" />
+          <Link target="_blank" href={"mailto:devproject193@gmail.com"}>
+            <Button variant={"destructive"} className="w-full">Contact Developer Now</Button>
+          </Link>
+        </div>
+        {/* <ReactQuery>
           {children}
           <Footer />
           <Toaster richColors />
-        </ReactQuery>
+        </ReactQuery> */}
       </body>
     </html>
   );
