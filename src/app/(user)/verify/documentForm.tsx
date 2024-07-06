@@ -32,13 +32,13 @@ export default function DocForm() {
 
   function OnError(errData: any) {
     toast("Error Occured", {
-      description: String(errData),
+      description: String("File size exceeded keep it less than 4mb"),
     });
   }
 
   const alrt = (field: string) => {
-    toast(`Something wrong with ${field}`, {
-      description: `Something wrong with ${field}`,
+    toast(`Something went wrong`, {
+      description: field,
     });
     setPending(false);
   };
