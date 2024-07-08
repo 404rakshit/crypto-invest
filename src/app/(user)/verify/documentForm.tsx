@@ -32,7 +32,7 @@ export default function DocForm() {
 
   function OnError(errData: any) {
     toast("Error Occured", {
-      description: String("File size exceeded keep it less than 4mb"),
+      description: String("File size exceeded keep it less than 16mb"),
     });
   }
 
