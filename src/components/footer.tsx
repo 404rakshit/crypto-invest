@@ -28,8 +28,9 @@ export default function Footer() {
             </span>
             <span className="max-w-lg">
               Phone:{" "}
-              <Link className="hover:text-primary" href={"tel:8886733106"}>
-                +1 (888) 673-3106{" "}
+              <Link target="_blank"
+                href={"https://api.whatsapp.com/send/?phone=14137493589&text&type=phone_number"}>
+                +14137493589
               </Link>
             </span>
           </section>
