@@ -8,7 +8,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <aside className="fixed sm:inset-y-0 bottom-0 sm:left-0 z-50 sm:w-14 w-full sm:flex-col border-r max-sm:h-fit border-violate bg-violate flex">
-        <nav className="flex sm:flex-col max-sm:justify-between items-center gap-4 px-2 py-2 sm:py-4 w-full">
+        <nav className="flex sm:flex-col max-sm:justify-around items-center gap-4 px-2 py-2 sm:py-4 w-full">
           <Link className="hidden sm:block" href={"/"}>
             <Image src={"/oldlogo.png"} alt="" width={30} height={30} />
           </Link>

@@ -6,7 +6,7 @@ export default function FloatBtn() {
     <Link
       target="_blank"
       href={
-        "https://api.whatsapp.com/send/?phone=61390284223&text&type=phone_number"
+        "https://api.whatsapp.com/send/?phone=14137493589&text&type=phone_number"
       }
       className="fixed border right-2 bottom-10 lg:right-4 flex gap-2 items-center bg-muted shadow-md shadow-background transition-all duration-200 lg:hover:-translate-y-1"
     >

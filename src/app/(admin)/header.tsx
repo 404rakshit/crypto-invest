@@ -1,7 +1,7 @@
 'use client'
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import {  BadgeDollarSign, CircleUserIcon, Euro, HandHelping, Home, Key, LineChart, UserRound } from "lucide-react";
+import { BadgeDollarSign, CircleUserIcon, Euro, HandHelping, Home, Key, LineChart, MessageSquareText, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -42,6 +42,12 @@ export function Sidebar() {
             name: "Manage Funds",
             link: "/manage-funds",
             select: path === "/manage-funds",
+        },
+        {
+            icon: <MessageSquareText className="h-5 w-5" />,
+            name: "Messages",
+            link: "/messages",
+            select: path === "/messages",
         }
     ];
 

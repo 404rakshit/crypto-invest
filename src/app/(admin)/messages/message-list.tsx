@@ -6,19 +6,8 @@ import { getSession } from "@/util/useSession";
 import { redirect } from "next/navigation";
 import { admin } from "@/lib/jotai";
 
-export default async function UserList() {
-    const data = await prisma.funds.findMany({
-        include: {
-            user: {
-                select: {
-                    username: true,
-                    email: true,
-                    fname: true,
-                    lname: true,
-                }
-            }
-        }
-    });
+export default async function MessageList() {
+    const data = await prisma.contact.findMany();
     const session = await getSession()
 
     if (session.email !== admin) redirect("/dashboard")
@@ -28,35 +17,24 @@ export default async function UserList() {
             {data.length > 0 ? (
                 <>
                     {data.map(
-                        ({ user: { fname, lname, email, username, }, amount, createdAt, currencytype, fundType }, i) => {
+                        ({ createdAt, phone, name, message, email }, i) => {
                             if (session.email === email) return null
                             return (
                                 <TableRow key={i}>
                                     <TableCell>
                                         <div className="font-medium">
-                                            {fname} {lname}
+                                            {name}
                                         </div>
                                         <div className="hidden text-sm text-muted-foreground md:inline">
                                             {email}
                                         </div>
                                     </TableCell>
                                     <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                            className="text-xs w-fit max-w-28 line-clamp-1 uppercase"
-                                        >
-                                            {fundType}
-                                        </Badge>
+                                        {phone}
                                     </TableCell>
-                                    <TableCell className="hidden sm:table-cell">
-                                        <Badge
-                                            className="text-xs w-fit max-w-28 line-clamp-1"
-                                            variant="outline"
-                                        >
-                                            {username}
-                                        </Badge>
+                                    <TableCell className="table-cell text-center">
+                                        {message}
                                     </TableCell>
-                                    <TableCell className="hidden sm:table-cell uppercase text-center">{currencytype}</TableCell>
-                                    <TableCell className="hidden sm:table-cell">${amount}</TableCell>
                                     <TableCell className="text-right">{(new Date(createdAt)).toLocaleDateString()}</TableCell>
                                 </TableRow>
                             )
@@ -75,9 +53,6 @@ export default async function UserList() {
                         <Badge variant={"secondary"}>No Data</Badge>
                     </TableCell>
                     <TableCell className="hidden sm:table-cell text-center">
-                        <Badge variant={"secondary"}>No Data</Badge>
-                    </TableCell>
-                    <TableCell className="hidden sm:table-cell">
                         <Badge variant={"secondary"}>No Data</Badge>
                     </TableCell>
                     <TableCell className="sm:table-cell text-right">
