@@ -68,7 +68,7 @@ export default function ResetForm() {
   return (
     <form onSubmit={handleForm} className="grid gap-4">
       <div className="grid gap-2">
-        <Label htmlFor="email">Username or Email</Label>
+        <Label htmlFor="email">Email</Label>
         <Input
           type="email"
           name="email"
