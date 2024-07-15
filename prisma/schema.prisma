@@ -13,6 +13,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Token {
+  id    Int    @id @default(autoincrement())
+  user  User   @relation(fields: [email], references: [email])
+  email String @unique
+  token String @unique
+
+  createdAt DateTime @default(now())
+}
+
 model User {
   id        Int        @id @default(autoincrement())
   email     String     @unique
@@ -29,6 +38,7 @@ model User {
   funds     Funds[]
   Portfolio Portfolio?
   trade     String     @default("[]") @db.VarChar(3000)
+  Token     Token?
 }
 
 model Funds {

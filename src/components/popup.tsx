@@ -30,8 +30,7 @@ export default function Popup() {
     }
 
     function startRandomIntervalFunction() {
-        const randomValue = getRandomValue();
-        setInterval(() => repeatFunction(randomValue), getRandomInterval(3, 6));
+        setInterval(() => repeatFunction(getRandomValue()), getRandomInterval(5, 9));
     }
 
     useEffect(() => {
