@@ -1,8 +1,26 @@
 import { ArrowUp } from "lucide-react";
 import Image from "next/image";
+import Script from "next/script";
 import React from "react";
 
 export default function Scroll() {
+  return (
+    <>
+      <Script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js" />
+      <div className="new-scroll">
+        {/* @ts-ignore */}
+        <gecko-coin-price-marquee-widget
+          locale="en"
+          outlined="true"
+          coin-ids="bitcoin,the-open-network,solana,tron,ripple,ethereum,tether,dogecoin,usd-coin"
+          initial-currency="usd"
+        >
+          {/* @ts-ignore */}
+        </gecko-coin-price-marquee-widget>
+      </div>
+    </>
+  );
+
   return (
     <div className="scroll">
       <div className="m-scroll">

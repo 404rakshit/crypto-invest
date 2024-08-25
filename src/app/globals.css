@@ -66,6 +66,10 @@ input:autofill {
   @apply fixed bottom-0 w-[100vw] overflow-hidden z-10 bg-background py-1 border-t;
 }
 
+.new-scroll {
+  @apply fixed bottom-0 w-[100vw] overflow-hidden z-10 bg-background border-t;
+}
+
 .m-scroll {
   overflow: hidden;
   height: 100%;
